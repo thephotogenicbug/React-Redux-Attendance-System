@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { cardShadow, hoverEffect } from "../utils";
 import AvatarImg from "../assets/profile.png";
 import styled from "styled-components";
 import Badge from "./Badge";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router";
+import { listAttendaces } from "../actions/attendaceActions";
+import { Link } from "react-router-dom";
 
 const InvoicesContainer = styled.div`
-  width: 35rem;
+  width: 37rem;
   border-radius: 1rem;
   margin-top: 2rem;
   background-color: white;
@@ -75,40 +80,64 @@ const Container = styled.div`
 `;
 const Price = styled.div``;
 
+const StyledButton = styled.button`
+  display: block;
+  background-color: #f7797d;
+  text-decoration: none !important;
+  color: white;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 5px;
+  height: 40px;
+  padding: 0 20px;
+  cursor: pointer;
+  box-sizing: border-box;
+`;
+
 const Invoices = () => {
+  const dispatch = useDispatch();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const attendaceList = useSelector((state) => state.attendaceList);
+  const { loading, attendaces, error } = attendaceList;
+
+  const history = useHistory();
+  console.log(attendaces);
+
+  useEffect(() => {
+    dispatch(listAttendaces());
+    if (!userInfo) {
+      history.push("/");
+    }
+  }, [dispatch, history, userInfo]);
+
   return (
     <InvoicesContainer>
       <CardContent>
-        <Invoice>
-          <Info>
-            <Avatar>
-              <img src={AvatarImg} alt="" />
-            </Avatar>
-            <TextContainer>
-              <Title>Naveen Kumar</Title>
-              <SubTitle>Web Developer</SubTitle>
-            </TextContainer>
-          </Info>
-          <Container>
-            <Badge content="Paid" paid />
-            <Price>$ 1,200.87</Price>
-          </Container>
-        </Invoice>
-        <Invoice>
-          <Info>
-            <Avatar>
-              <img src={AvatarImg} alt="" />
-            </Avatar>
-            <TextContainer>
-              <Title>Naveen Kumar</Title>
-              <SubTitle>Web Developer</SubTitle>
-            </TextContainer>
-          </Info>
-          <Container>
-            <Badge content="Late" late />
-            <Price>$ 6,200.87</Price>
-          </Container>
-        </Invoice>
+        {attendaces?.map((attendace) => {
+          return (
+            <Invoice>
+              <Info>
+                <Avatar>
+                  <img src={AvatarImg} alt="" />
+                </Avatar>
+                <TextContainer>
+                  <Title>{attendace.name}</Title>
+                  {/* <SubTitle>{attendace.department}</SubTitle> */}
+                  <SubTitle>Job Role</SubTitle>
+                </TextContainer>
+              </Info>
+              <Container>
+                <Badge content="Present" paid />
+                <Link style={{ textDecoration: "none" }}>
+                  <StyledButton>view </StyledButton>
+                </Link>
+              </Container>
+            </Invoice>
+          );
+        })}
       </CardContent>
     </InvoicesContainer>
   );

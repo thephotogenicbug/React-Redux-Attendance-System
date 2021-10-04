@@ -3,6 +3,9 @@ import { cardShadow, hoverEffect } from "../utils";
 import AvatarImg from "../assets/profile.png";
 import styled, { createGlobalStyle, css } from "styled-components";
 import Badge from "./Badge";
+import { useDispatch, useSelector } from "react-redux";
+import { createAttendaceAction } from "../actions/attendaceActions";
+import { useHistory } from "react-router";
 
 const GlobalStyle = createGlobalStyle`
  html {
@@ -80,9 +83,50 @@ const StyledFieldset = styled.fieldset`
     margin-right: 10px;
   }
 `;
-const StyledError = styled.div``;
+const StyledError = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fa4d41;
+`;
 
 const Attendace = () => {
+  const [name, setName] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [unique, setUnique] = useState("");
+  const [department, setDepartment] = useState("");
+
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const attendaceCreate = useSelector((state) => state.attendaceCreate);
+  const { loading, error, attendace } = attendaceCreate;
+
+  const SubmitHandler = (e) => {
+    e.preventDefault();
+    dispatch(
+      createAttendaceAction(name, mobile, unique, department, logintime)
+    );
+    if (!name || !mobile || !unique || !department) return;
+
+    history.push("/dashboard");
+  };
+
+  const showdate = new Date();
+  const displaytodaydate =
+    showdate.getDate() +
+    "/" +
+    (showdate.getMonth() + 1) +
+    "/" +
+    showdate.getFullYear();
+  const dt = showdate.toDateString();
+  const logintime =
+    showdate.getHours() +
+    ":" +
+    showdate.getMinutes() +
+    ":" +
+    showdate.getSeconds();
+
   return (
     <>
       <GlobalStyle />
@@ -90,18 +134,90 @@ const Attendace = () => {
         <StyledForm>
           <h2>Attendace Form</h2>
 
-          <StyledInput type="text" placeholder="Name" />
-          <StyledInput type="number" placeholder="Mobile No" />
-          <StyledInput type="text" placeholder="Unique ID" />
-          <StyledInput type="email" placeholder="Date" />
-          <StyledError>
-            {/* <p>Error message here</p> */}
-          </StyledError>
-          <StyledButton type="submit">Send Message</StyledButton>
+          <StyledInput
+            type="text"
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <StyledInput
+            type="number"
+            placeholder="Mobile No"
+            value={mobile}
+            onChange={(e) => setMobile(e.target.value)}
+          />
+          <StyledInput
+            type="text"
+            placeholder="Unique ID"
+            value={unique}
+            onChange={(e) => setUnique(e.target.value)}
+          />
+          <StyledInput
+            type="email"
+            placeholder="Department"
+            value={department}
+            onChange={(e) => setDepartment(e.target.value)}
+          />
+          <StyledError>{/* <p>Error message here</p> */}</StyledError>
+          <StyledButton onClick={SubmitHandler}>Submit Attendace</StyledButton>
+          {loading ? (
+            <StyledSpinner viewBox="0 0 50 50">
+              <circle
+                className="path"
+                cx="25"
+                cy="25"
+                r="20"
+                fill="none"
+                strokeWidth="4"
+              />
+            </StyledSpinner>
+          ) : error ? (
+            <StyledError>{error}</StyledError>
+          ) : (
+            ""
+          )}
         </StyledForm>
       </StyledFormWrapper>
     </>
   );
 };
+
+// Spinners stock components
+const StyledSpinner = styled.svg`
+  display: flex;
+  justify-content: center;
+  margin-left: 10rem !important;
+  animation: rotate 2s linear infinite;
+  margin: -25px 0 0 -25px;
+  width: 40px;
+  height: 40px;
+  margin-top: -40px;
+
+  & .path {
+    stroke: #f7797d;
+    stroke-linecap: round;
+    animation: dash 1.5s ease-in-out infinite;
+  }
+
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes dash {
+    0% {
+      stroke-dasharray: 1, 150;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -35;
+    }
+    100% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -124;
+    }
+  }
+`;
 
 export default Attendace;

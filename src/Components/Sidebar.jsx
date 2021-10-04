@@ -101,13 +101,13 @@ const Sidebar = () => {
       </ProfileContainer>
       <LinksContainer>
         <Links>
-          <a href="/dashboard">
+          <a href="/dashboard" style={{ textDecoration: "none" }}>
             <Link>
               <RiHomeLine />
               <h3>Dashboard</h3>
             </Link>
           </a>
-          <a href="/attendance">
+          <a href="/attendance" style={{ textDecoration: "none" }}>
             <Link>
               <RiFileCopyLine />
               <h3>Attendace</h3>

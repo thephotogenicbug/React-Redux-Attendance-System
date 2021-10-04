@@ -5,6 +5,7 @@ import AvatarImg from "../assets/profile.png";
 
 const YourProjects = styled.div`
   height: 70;
+  margin-top: 1rem !important;
   width: 180%;
   background-color: white;
   margin: 0;
@@ -28,8 +29,8 @@ const Project = styled.div`
 `;
 const Avatar = styled.div`
   img {
-    height: 4rem;
-    width: 4rem;
+    height: 3rem;
+    width: 3rem;
     border-radius: 4rem;
   }
 `;
@@ -59,20 +60,20 @@ const Projects = () => {
           <img src={AvatarImg} alt="" />
         </Avatar>
         <Detail>
-          <Title>Logo Design For Bakery</Title>
-          <SubTitle>1 day remaining</SubTitle>
+          <Title>Student Name</Title>
+          <SubTitle>Counseling</SubTitle>
         </Detail>
       </Project>
-      <Project>
+      {/* <Project>
         <Avatar>
           <img src={AvatarImg} alt="" />
         </Avatar>
         <Detail>
-          <Title>Personal Branding Project</Title>
-          <SubTitle>1 day remaining</SubTitle>
+          <Title>Student Name</Title>
+          <SubTitle>Counseling</SubTitle>
         </Detail>
-      </Project>
-      <AllProjects>See all Projects</AllProjects>
+      </Project> */}
+      <AllProjects>See all Visitors</AllProjects>
     </YourProjects>
   );
 };

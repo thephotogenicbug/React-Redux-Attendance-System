@@ -4,12 +4,13 @@ import Badge from "./Badge";
 import { cardShadow, hoverEffect, themeColor } from "../utils";
 
 const InfoCard = styled.div`
-  height: 120%;
+  height: 60%;
   width: 14rem;
   background-color: white;
   border-radius: 1rem;
   padding: 1rem;
   color: white;
+  margin-top: 3rem;
   box-shadow: ${cardShadow};
   transition: 0.4s ease-in-out;
   &:hover {
@@ -31,6 +32,7 @@ const Row = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 0.4rem;
+  margin-top: 1rem;
   ${({ justify }) =>
     justify &&
     `
@@ -59,7 +61,7 @@ const SubTitle = styled.h5`
 const Info = () => {
   return (
     <InfoCard>
-      <Card>
+      {/* <Card>
         <CardContent>
           <Row>
             <Digit>98</Digit>
@@ -69,19 +71,19 @@ const Info = () => {
             </InfoContainer>
           </Row>
         </CardContent>
-      </Card>
+      </Card> */}
       <Card>
         <CardContent>
           <Row>
-            <Digit>32</Digit>
+            <Digit>0</Digit>
             <InfoContainer>
               <Title>Admissions</Title>
-              <SubTitle>8 this month</SubTitle>
+              <SubTitle>0 this month</SubTitle>
             </InfoContainer>
           </Row>
           <Row justify>
-            <Badge content="Example" glow />
-            <Badge content="Example" glow />
+            {/* <Badge content="Example" glow />
+            <Badge content="Example" glow /> */}
           </Row>
         </CardContent>
       </Card>

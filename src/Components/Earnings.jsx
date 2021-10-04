@@ -54,8 +54,8 @@ const Earnings = () => {
           <IoStatsChart />
         </Chart>
         <EarningsText>Earnings</EarningsText>
-        <Earning>$7,000</Earning>
-        <EarningsIncrease>+ 10% since last month</EarningsIncrease>
+        <Earning>$134.64</Earning>
+        <EarningsIncrease>0% since last month</EarningsIncrease>
       </CardContent>
     </EarningsCard>
   );

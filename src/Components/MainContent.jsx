@@ -79,6 +79,7 @@ const ColumnOne2 = styled.div`
 `;
 
 const InvoiceContainer = styled.div`
+  margin-top: 1rem;
   height: 60%;
   @media screen and (min-width: 320px) and (max-width: 1080px) {
     height: max-content;
@@ -103,7 +104,7 @@ const ColumnTwo1 = styled.div`
 `;
 const ColumnTwo2 = styled.div`
   @media screen and (min-width: 320px) and (max-width: 1080px) {
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -121,21 +122,19 @@ const MainContent = () => {
             <Info />
           </ColumnOne1>
           <ColumnTwo1>
-            <TitleText>Your Project</TitleText>
+            <TitleText>Current Visits</TitleText>
             <Projects />
           </ColumnTwo1>
         </SectionOne>
         <SectionTwo>
           <ColumnOne2>
             <InvoiceContainer>
-              <TitleText>Recent Data</TitleText>
+              <TitleText>Attendace Data</TitleText>
               <Invoices />
             </InvoiceContainer>
             {/* <JoinSlack /> */}
           </ColumnOne2>
-          <ColumnTwo2>
-            <ProjectRecommendation />
-          </ColumnTwo2>
+          {/* <ColumnTwo2><ProjectRecommendation /></ColumnTwo2> */}
         </SectionTwo>
       </SubContainer>
     </Container>
