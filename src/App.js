@@ -1,22 +1,23 @@
 import styled from "styled-components";
 import "./App.css";
+import { BrowserRouter, Route } from "react-router-dom";
 import MainContent from "./Components/MainContent";
 import Sidebar from "./Components/Sidebar";
-
-const Container = styled.div`
-  display: flex;
-  height: 97vh;
-  margin-top: 10px;
-  background: linear-gradient(to bottom right, white 0%, #e6e4ff 70%);
-  border-radius: 2rem;
-`;
+import Signup from "./pages/Signup/Signup";
+import MainContainer from "./Components/MainContainer";
+import MainContainerTwo from "./Components/MainContainer2";
 
 function App() {
   return (
-    <Container>
-      <Sidebar />
-      <MainContent />
-    </Container>
+    <BrowserRouter>
+      <Route exact path="/" component={Signup} />
+      <Route exact path="/dashboard" component={MainContainer} />
+      <Route exact path="/attendance" component={MainContainerTwo} />
+    </BrowserRouter>
+    // <Container>
+    //   <Sidebar />
+    //   <MainContent />
+    // </Container>
   );
 }
 

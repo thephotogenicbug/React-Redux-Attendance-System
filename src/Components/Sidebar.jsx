@@ -6,16 +6,21 @@ import { darkThemeColor } from "../utils";
 import { RiHomeLine, RiFileCopyLine } from "react-icons/ri";
 import { FaWallet } from "react-icons/fa";
 import { AiOutlinePieChart } from "react-icons/ai";
+import { useSelector } from "react-redux";
 
 const Container = styled.div`
   width: 20%;
   height: 100% !important;
   border-radius: 2rem;
-  background-color: #091322;
+  background-color: #f19066;
   display: flex;
   flex-direction: column;
   align-content: center;
   gap: 3rem;
+  @media screen and (min-width: 320px) and (max-width: 1080px) {
+    width: 100%;
+    height: max-content !important;
+  }
 `;
 const ProfileContainer = styled.div`
   display: flex;
@@ -65,7 +70,7 @@ const Link = styled.li`
 `;
 const ContactContainer = styled.div`
   width: 60%;
-  background-color: #091322;
+  background-color: #e77f67;
   color: #c4c4c4;
   height: 15%;
   margin: auto auto;
@@ -74,30 +79,40 @@ const ContactContainer = styled.div`
   flex-direction: column;
   padding: 1rem;
 
-  a{
-      color:white;
-      text-decoration:none;
+  a {
+    color: white;
+    text-decoration: none;
+  }
+  @media screen and (min-width: 320px) and (max-width: 1080px) {
+    margin-bottom: 2rem;
   }
 `;
 
 const Sidebar = () => {
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   return (
     <Container>
       <ProfileContainer>
         <Avatar src={AvatarImg} />
-        <Name>Naveen</Name>
-        <Badge content="Pro Level" />
+        <Name>{`${userInfo?.name}`}</Name>
+        <Badge content="Level" />
       </ProfileContainer>
       <LinksContainer>
         <Links>
-          <Link>
-            <RiHomeLine />
-            <h3>Dashboard</h3>
-          </Link>
-          <Link>
-            <RiFileCopyLine />
-            <h3>Attendace</h3>
-          </Link>
+          <a href="/dashboard">
+            <Link>
+              <RiHomeLine />
+              <h3>Dashboard</h3>
+            </Link>
+          </a>
+          <a href="/attendance">
+            <Link>
+              <RiFileCopyLine />
+              <h3>Attendace</h3>
+            </Link>
+          </a>
           <Link>
             <RiHomeLine />
             <h3>Apply For Leave</h3>

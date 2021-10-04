@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Attendace from "./Attendace";
 import Earnings from "./Earnings";
 import Info from "./Info";
 import Invoices from "./Invoices";
@@ -103,43 +104,22 @@ const ColumnTwo1 = styled.div`
 `;
 const ColumnTwo2 = styled.div`
   @media screen and (min-width: 320px) and (max-width: 1080px) {
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
+
     flex-direction: column;
   }
 `;
 
-const MainContent = () => {
+const MainContentTwo = () => {
   return (
     <Container>
-      <Navbar />
       <SubContainer>
-        <SectionOne>
-          <ColumnOne1>
-            <Earnings />
-            <Info />
-          </ColumnOne1>
-          <ColumnTwo1>
-            <TitleText>Your Project</TitleText>
-            <Projects />
-          </ColumnTwo1>
-        </SectionOne>
-        <SectionTwo>
-          <ColumnOne2>
-            <InvoiceContainer>
-              <TitleText>Recent Data</TitleText>
-              <Invoices />
-            </InvoiceContainer>
-            {/* <JoinSlack /> */}
-          </ColumnOne2>
-          <ColumnTwo2>
-            <ProjectRecommendation />
-          </ColumnTwo2>
-        </SectionTwo>
+        <Attendace />
       </SubContainer>
     </Container>
   );
 };
 
-export default MainContent;
+export default MainContentTwo;
