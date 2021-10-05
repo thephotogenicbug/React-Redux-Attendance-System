@@ -7,12 +7,13 @@ import { RiHomeLine, RiFileCopyLine } from "react-icons/ri";
 import { FaWallet } from "react-icons/fa";
 import { AiOutlinePieChart } from "react-icons/ai";
 import { useSelector } from "react-redux";
+import { AiFillDashboard } from "react-icons/ai";
 
 const Container = styled.div`
   width: 20%;
   height: 100% !important;
   border-radius: 2rem;
-  background-color: #f19066;
+  background-color: #ff5e63;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -103,7 +104,7 @@ const Sidebar = () => {
         <Links>
           <a href="/dashboard" style={{ textDecoration: "none" }}>
             <Link>
-              <RiHomeLine />
+              <AiFillDashboard />
               <h3>Dashboard</h3>
             </Link>
           </a>
@@ -120,7 +121,7 @@ const Sidebar = () => {
         </Links>
         <ContactContainer>
           <span>Having trouble ? </span>
-          <a href="#">Contact us</a>
+          <a href="#">Report Here</a>
         </ContactContainer>
       </LinksContainer>
     </Container>

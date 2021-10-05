@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { FiSearch } from "react-icons/fi";
 import { useSelector } from "react-redux";
+import { AiOutlinePoweroff } from "react-icons/ai";
 
 const NavbarContainer = styled.nav`
   display: flex;
@@ -19,7 +20,7 @@ const Text = styled.h1`
     color: #484258;
   }
   @media screen and (min-width: 320px) and (max-width: 1080px) {
-   margin-top: 1rem;
+    margin-top: 1rem;
   }
 `;
 const InputContainer = styled.div`
@@ -50,6 +51,23 @@ const Input = styled.input`
   }
 `;
 
+const PowerIcon = styled.div`
+  height: 3rem;
+  width: 3rem;
+  margin-left: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  cursor: pointer;
+
+  svg {
+    color: #f73437;
+    font-size: 25px;
+  }
+`;
+
 const Navbar = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -66,6 +84,9 @@ const Navbar = () => {
           <FiSearch />
         </Icon>
         <Input type="text" placeholder="Search..." />
+        <PowerIcon>
+          <AiOutlinePoweroff />
+        </PowerIcon>
       </InputContainer>
     </NavbarContainer>
   );

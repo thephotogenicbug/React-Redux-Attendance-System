@@ -21,7 +21,7 @@ const InfoCard = styled.div`
   }
 `;
 const Card = styled.div`
-  background-color: rgba(183, 194, 243, 0.3);
+  background-color: #fabbbe;
   border-radius: 1rem;
   margin-bottom: 1rem;
 `;

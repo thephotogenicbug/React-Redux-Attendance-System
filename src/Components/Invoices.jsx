@@ -125,8 +125,7 @@ const Invoices = () => {
                 </Avatar>
                 <TextContainer>
                   <Title>{attendace.name}</Title>
-                  {/* <SubTitle>{attendace.department}</SubTitle> */}
-                  <SubTitle>Job Role</SubTitle>
+                  <SubTitle>{attendace.department}</SubTitle>
                 </TextContainer>
               </Info>
               <Container>
