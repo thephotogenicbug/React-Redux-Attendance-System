@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { register } from "../../actions/userActions";
 import LogoImg from "../../assets/logo.png";
+import Spinner from "../../Components/Spinner";
 import Input from "./Input";
 
 const Container = styled.div`
@@ -125,12 +127,8 @@ const Sidebar = () => {
       </LogoWrapper>
       <Form>
         <h3>Sign Up</h3>
-        {message}
-        {loading && (
-          <div class="spinner-grow text-success" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>
-        )}
+        {/* {error && <p>{error}</p>} */}
+        {loading && <Spinner />}
         <Input
           type="text"
           placeholder="Full Name"
@@ -158,7 +156,10 @@ const Sidebar = () => {
           Service
         </Terms>
         <h4>
-          Already have an account ? <span>Sign In</span>
+          Already have an account ?{" "}
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <span>Sign In</span>
+          </Link>
         </h4>
       </div>
     </Container>

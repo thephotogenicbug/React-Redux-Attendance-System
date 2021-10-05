@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import Earnings from "./Earnings";
 import Info from "./Info";
-import Invoices from "./Invoices";
 import JoinSlack from "./JoinSlack";
 import Navbar from "./Navbar";
 import ProjectRecommendation from "./ProjectRecommendation";
 import Projects from "./Projects";
+import AttendanceData from "./AttendanceData";
 
 const Container = styled.div`
   width: 60%;
@@ -130,7 +130,7 @@ const MainContent = () => {
           <ColumnOne2>
             <InvoiceContainer>
               <TitleText>Attendace Data</TitleText>
-              <Invoices />
+              <AttendanceData />
             </InvoiceContainer>
             {/* <JoinSlack /> */}
           </ColumnOne2>

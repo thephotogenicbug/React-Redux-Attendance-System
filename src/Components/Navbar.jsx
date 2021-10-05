@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { FiSearch } from "react-icons/fi";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AiOutlinePoweroff } from "react-icons/ai";
+import { logout } from "../actions/userActions";
+import { useHistory } from "react-router";
 
 const NavbarContainer = styled.nav`
   display: flex;
@@ -69,8 +71,17 @@ const PowerIcon = styled.div`
 `;
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+
+  const history = useHistory();
+
+  const logoutHandler = () => {
+    dispatch(logout());
+    history.push("/");
+  };
 
   useEffect(() => {}, []);
   return (
@@ -85,7 +96,7 @@ const Navbar = () => {
         </Icon>
         <Input type="text" placeholder="Search..." />
         <PowerIcon>
-          <AiOutlinePoweroff />
+          <AiOutlinePoweroff onClick={logoutHandler} />
         </PowerIcon>
       </InputContainer>
     </NavbarContainer>

@@ -8,9 +8,11 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { listAttendaces } from "../actions/attendaceActions";
 import { Link } from "react-router-dom";
+import Spinner from "./Spinner";
 
 const InvoicesContainer = styled.div`
-  width: 37rem;
+  position: relative;
+  width: 43rem;
   border-radius: 1rem;
   margin-top: 2rem;
   background-color: white;
@@ -70,7 +72,7 @@ const SubTitle = styled.h5`
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 30%;
+  width: 40%;
   align-items: center;
   @media screen and (min-width: 320px) and (max-width: 1080px) {
     width: 100%;
@@ -94,7 +96,16 @@ const StyledButton = styled.button`
   box-sizing: border-box;
 `;
 
-const Invoices = () => {
+const AttendaceSpinner = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4rem;
+  margin-left: 17rem;
+`;
+
+const AttendanceData = () => {
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
@@ -102,6 +113,9 @@ const Invoices = () => {
 
   const attendaceList = useSelector((state) => state.attendaceList);
   const { loading, attendaces, error } = attendaceList;
+
+  const attendaceCreate = useSelector((state) => state.attendaceCreate);
+  const { success: successCreate } = attendaceCreate;
 
   const history = useHistory();
   console.log(attendaces);
@@ -111,35 +125,42 @@ const Invoices = () => {
     if (!userInfo) {
       history.push("/");
     }
-  }, [dispatch, history, userInfo]);
+  }, [dispatch, successCreate, history, userInfo]);
 
   return (
-    <InvoicesContainer>
-      <CardContent>
-        {attendaces?.map((attendace) => {
-          return (
-            <Invoice>
-              <Info>
-                <Avatar>
-                  <img src={AvatarImg} alt="" />
-                </Avatar>
-                <TextContainer>
-                  <Title>{attendace.name}</Title>
-                  <SubTitle>{attendace.department}</SubTitle>
-                </TextContainer>
-              </Info>
-              <Container>
-                <Badge content="Present" paid />
-                <Link style={{ textDecoration: "none" }}>
-                  <StyledButton>view </StyledButton>
-                </Link>
-              </Container>
-            </Invoice>
-          );
-        })}
-      </CardContent>
-    </InvoicesContainer>
+    <>
+      <InvoicesContainer>
+        <CardContent>
+          <AttendaceSpinner>{loading && <Spinner />}</AttendaceSpinner>
+          {attendaces?.map((attendace) => {
+            return (
+              <Invoice>
+                <Info>
+                  <Avatar>
+                    <img src={AvatarImg} alt="" />
+                  </Avatar>
+                  <TextContainer>
+                    <Title>{attendace.name}</Title>
+                    <SubTitle>{attendace.department}</SubTitle>
+                  </TextContainer>
+                </Info>
+                <Container>
+                  <Badge content="Present" paid />
+                  <p>05-10-2021</p>
+                  <Link
+                    to={`/view/${attendace._id}`}
+                    style={{ textDecoration: "none" }}
+                  >
+                    <StyledButton>view </StyledButton>
+                  </Link>
+                </Container>
+              </Invoice>
+            );
+          })}
+        </CardContent>
+      </InvoicesContainer>
+    </>
   );
 };
 
-export default Invoices;
+export default AttendanceData;

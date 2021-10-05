@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { login, register } from "../../actions/userActions";
 import LogoImg from "../../assets/logo.png";
+import Spinner from "../../Components/Spinner";
 import Input from "./Input";
 
 const Container = styled.div`
@@ -25,7 +27,6 @@ const Container = styled.div`
     color: #808080;
     font-weight: bold;
     font-size: 13px;
-    margin-top: 2rem;
     span {
       color: #ff8d8d;
       cursor: pointer;
@@ -77,14 +78,6 @@ const Form = styled.form`
   }
 `;
 
-const Terms = styled.p`
-  padding: 0 1rem;
-  text-align: center;
-  font-size: 10px;
-  color: #8d8d8d;
-  font-weight: 300;
-`;
-
 const Sidebar = () => {
   const [email, pickEmail] = useState("");
   const [password, pickPassword] = useState("");
@@ -120,9 +113,7 @@ const Sidebar = () => {
         <h3>Sign In</h3>
         {/* {message} */}
         {loading && (
-          <div class="spinner-grow text-success" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>
+          <Spinner />
         )}
         <Input
           type="email"
@@ -137,15 +128,18 @@ const Sidebar = () => {
           onChange={(e) => pickPassword(e.target.value)}
         />
         <Input type="password" placeholder="Confirm Password" />
-        <button>Sign Up</button>
+        <button onClick={submitHandler}>Sign In</button>
       </Form>
       <div>
-        <Terms>
+        {/* <Terms>
           By Signing up, i agree to the Privacy Policy <br /> and Terms of
           Service
-        </Terms>
+        </Terms> */}
         <h4>
-          Already have an account ? <span>Sign In</span>
+          New User ?{" "}
+          <Link to="/register" style={{ textDecoration: "none" }}>
+            <span>Sign Up</span>
+          </Link>
         </h4>
       </div>
     </Container>

@@ -71,7 +71,7 @@ const Link = styled.li`
 `;
 const ContactContainer = styled.div`
   width: 60%;
-  background-color: #e77f67;
+  background-color: #fc3d42;
   color: #c4c4c4;
   height: 15%;
   margin: auto auto;
