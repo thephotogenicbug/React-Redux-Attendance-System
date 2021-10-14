@@ -1,12 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import Attendace from "./Attendace";
 import Earnings from "./Earnings";
 import Info from "./Info";
+import Invoices from "./AttendanceData";
 import JoinSlack from "./JoinSlack";
 import Navbar from "./Navbar";
 import ProjectRecommendation from "./ProjectRecommendation";
 import Projects from "./Projects";
-import AttendanceData from "./AttendanceData";
+import SinglePage from "./SinglePageAttendaceData";
 
 const Container = styled.div`
   width: 60%;
@@ -106,42 +108,19 @@ const ColumnTwo2 = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
     flex-direction: column;
   }
 `;
 
-const MainContent = () => {
-
-  
-
+const MainContentAttendaceInfo = () => {
   return (
     <Container>
-      <Navbar />
       <SubContainer>
-        <SectionOne>
-          <ColumnOne1>
-            {/* <Earnings /> */}
-            <Info />
-          
-          </ColumnOne1>
-          {/* <ColumnTwo1>
-            <TitleText>Current Visits</TitleText>
-            <Projects />
-          </ColumnTwo1> */}
-        </SectionOne>
-        <SectionTwo>
-          <ColumnOne2>
-            <InvoiceContainer>
-              <TitleText>Attendace Data</TitleText>
-              <AttendanceData />
-            </InvoiceContainer>
-            {/* <JoinSlack /> */}
-          </ColumnOne2>
-          {/* <ColumnTwo2><ProjectRecommendation /></ColumnTwo2> */}
-        </SectionTwo>
+        <SinglePage />
       </SubContainer>
     </Container>
   );
 };
 
-export default MainContent;
+export default MainContentAttendaceInfo;

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { cardShadow, hoverEffect } from "../utils";
 import AvatarImg from "../assets/profile.png";
 import styled from "styled-components";
@@ -9,14 +9,15 @@ import { useHistory } from "react-router";
 import { listAttendaces } from "../actions/attendaceActions";
 import { Link } from "react-router-dom";
 import Spinner from "./Spinner";
+import Pagination from "./Pagination";
 
 const InvoicesContainer = styled.div`
   position: relative;
-  width: 43rem;
+  width: 60rem;
   border-radius: 1rem;
-  margin-top: 2rem;
+  margin-top: 1rem;
   background-color: white;
-  height: 170%;
+  height: max-content;
   box-shadow: ${cardShadow};
   transition: 0.4s ease-in-out;
   &:hover {
@@ -102,8 +103,9 @@ const AttendaceSpinner = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 4rem;
-  margin-left: 17rem;
+  margin-left: 28rem;
 `;
+
 
 const AttendanceData = () => {
   const dispatch = useDispatch();
@@ -127,38 +129,56 @@ const AttendanceData = () => {
     }
   }, [dispatch, successCreate, history, userInfo]);
 
+  const [showPerPage, setShowPerPage] = useState(2);
+  const [pagination, setPagination] = useState({
+    start: 0,
+    end: showPerPage,
+  });
+
+  const onPaginationChange = (start, end) => {
+    setPagination({ start: start, end: end });
+  };
+
   return (
     <>
       <InvoicesContainer>
         <CardContent>
           <AttendaceSpinner>{loading && <Spinner />}</AttendaceSpinner>
-          {attendaces?.map((attendace) => {
-            return (
-              <Invoice>
-                <Info>
-                  <Avatar>
-                    <img src={AvatarImg} alt="" />
-                  </Avatar>
-                  <TextContainer>
-                    <Title>{attendace.name}</Title>
-                    <SubTitle>{attendace.department}</SubTitle>
-                  </TextContainer>
-                </Info>
-                <Container>
-                  <Badge content="Present" paid />
-                  <p>05-10-2021</p>
-                  <Link
-                    to={`/view/${attendace._id}`}
-                    style={{ textDecoration: "none" }}
-                  >
-                    <StyledButton>view </StyledButton>
-                  </Link>
-                </Container>
-              </Invoice>
-            );
-          })}
+          {attendaces
+            ?.slice(pagination.start, pagination.end)
+            .map((attendace) => {
+              return (
+                <>
+                  <Invoice>
+                    <Info>
+                      <Avatar>
+                        <img src={AvatarImg} alt="" />
+                      </Avatar>
+                      <TextContainer>
+                        <Title>{attendace.name}</Title>
+                        <SubTitle>{attendace.department}</SubTitle>
+                      </TextContainer>
+                    </Info>
+                    <Container>
+                      <Badge content="Present" paid />
+                      <p>{attendace.createdAt.substring(0, 10)}</p>
+                      <Link
+                        to={`/view/${attendace._id}`}
+                        style={{ textDecoration: "none" }}
+                      >
+                        <StyledButton>view </StyledButton>
+                      </Link>
+                    </Container>
+                  </Invoice>
+                </>
+              );
+            })}
         </CardContent>
       </InvoicesContainer>
+      <Pagination
+        showPerPage={showPerPage}
+        onPaginationChange={onPaginationChange}
+      />
     </>
   );
 };
