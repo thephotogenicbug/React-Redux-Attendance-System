@@ -4,6 +4,7 @@ import thunk from "redux-thunk";
 import {
   attendaceCreateReducer,
   attendaceListReducer,
+  attendaceUpdateReducer,
 } from "./reducers/attendancesReducer";
 import { userLoginReducer, userRegisterReducer } from "./reducers/userReducer";
 
@@ -12,6 +13,7 @@ const reducer = combineReducers({
   userRegister: userRegisterReducer,
   attendaceCreate: attendaceCreateReducer,
   attendaceList: attendaceListReducer,
+  attendaceUpdate: attendaceUpdateReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

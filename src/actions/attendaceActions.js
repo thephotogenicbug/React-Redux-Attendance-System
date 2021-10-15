@@ -6,10 +6,13 @@ import {
   ATTENDACES_LIST_FAIL,
   ATTENDACES_LIST_REQUEST,
   ATTENDACES_LIST_SUCCESS,
+  ATTENDACES_UPDATE_FAIL,
+  ATTENDACES_UPDATE_REQUEST,
+  ATTENDACES_UPDATE_SUCCESS,
 } from "../constants/attendacesConstants";
 
 export const createAttendaceAction =
-  (name, mobile, unique, department, logintime) =>
+  (name, mobile, unique, department, logintime, lunchstart, lunchend, logout) =>
   async (dispatch, getState) => {
     try {
       dispatch({
@@ -28,7 +31,16 @@ export const createAttendaceAction =
 
       const { data } = await axios.post(
         `http://localhost:5000/api/attendace/create`,
-        { name, mobile, unique, department, logintime },
+        {
+          name,
+          mobile,
+          unique,
+          department,
+          logintime,
+          lunchstart,
+          lunchend,
+          logout,
+        },
         config
       );
 
@@ -49,29 +61,105 @@ export const createAttendaceAction =
     }
   };
 
+export const listAttendaces = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: ATTENDACES_LIST_REQUEST,
+    });
 
-  export const listAttendaces = () => async (dispatch, getState) => {
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const { data } = await axios.get(
+      `http://localhost:5000/api/attendace/get`,
+      config
+    );
+
+    dispatch({
+      type: ATTENDACES_LIST_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({
+      type: ATTENDACES_LIST_FAIL,
+      payload: message,
+    });
+  }
+};
+
+export const updateAttendaceAction =
+  (id, lunchstart) => async (dispatch, getState) =>{
+    try {
+       dispatch({
+         type: ATTENDACES_UPDATE_REQUEST
+       })
+       const {
+         userLogin : {userInfo}
+       } = getState()
+
+       const config = {
+         headers: {
+           "Content-Type": "application/json",
+           Authorization: `Bearer ${userInfo.token}`,
+         },
+       };
+       
+       const { data } = await axios.put(
+         `http://localhost:5000/api/attendace/get/${id}`,
+         {lunchstart},
+         config
+       );
+       dispatch({
+         type:ATTENDACES_UPDATE_SUCCESS,
+         payload : data,
+       })
+    } catch (error) {
+       const message =
+         error.response && error.response.data.message
+           ? error.response.data.message
+           : error.message;
+       dispatch({
+         type: ATTENDACES_UPDATE_FAIL,
+         payload: message,
+       });
+    }
+  }
+
+  
+export const updateAttendaceActionLunchend =
+  (id, lunchend) => async (dispatch, getState) => {
     try {
       dispatch({
-        type: ATTENDACES_LIST_REQUEST,
+        type: ATTENDACES_UPDATE_REQUEST,
       });
-
       const {
         userLogin: { userInfo },
       } = getState();
 
       const config = {
         headers: {
+          "Content-Type": "application/json",
           Authorization: `Bearer ${userInfo.token}`,
         },
       };
-      const { data } = await axios.get(
-        `http://localhost:5000/api/attendace`,
+
+      const { data } = await axios.put(
+        `http://localhost:5000/api/attendace/get/${id}`,
+        { lunchend },
         config
       );
-
       dispatch({
-        type: ATTENDACES_LIST_SUCCESS,
+        type: ATTENDACES_UPDATE_SUCCESS,
         payload: data,
       });
     } catch (error) {
@@ -80,7 +168,7 @@ export const createAttendaceAction =
           ? error.response.data.message
           : error.message;
       dispatch({
-        type: ATTENDACES_LIST_FAIL,
+        type: ATTENDACES_UPDATE_FAIL,
         payload: message,
       });
     }

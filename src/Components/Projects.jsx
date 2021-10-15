@@ -51,7 +51,13 @@ const AllProjects = styled.h5`
   color: ${themeColor};
   cursor: pointer;
 `;
-
+// {
+//   department.length == 0 ? (
+//     <StyledButton>HI</StyledButton>
+//   ) : (
+//     <StyledInput type="text" />
+//   );
+// }
 const Projects = () => {
   return (
     <YourProjects>

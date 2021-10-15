@@ -90,14 +90,11 @@ const StyledError = styled.div`
   color: #fa4d41;
 `;
 
-const Attendace = () => {
+const LunchBreak = () => {
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
   const [unique, setUnique] = useState("");
   const [department, setDepartment] = useState("");
-  const [lunchstart, setLunchStart] = useState("blank")
-  const [lunchend, setLunchEnd] = useState("blank")
-  const [logout, setLogout] = useState("blank");
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -108,7 +105,7 @@ const Attendace = () => {
   const SubmitHandler = (e) => {
     e.preventDefault();
     dispatch(
-      createAttendaceAction(name, mobile, unique, department, logintime, lunchstart, lunchend, logout)
+      createAttendaceAction(name, mobile, unique, department, logintime)
     );
     if (!name || !mobile || !unique || !department) return;
 
@@ -135,7 +132,7 @@ const Attendace = () => {
       <GlobalStyle />
       <StyledFormWrapper>
         <StyledForm>
-          <h2>Attendace Form</h2>
+          <h2>Lunch Break Form</h2>
 
           <StyledInput
             type="text"
@@ -223,4 +220,4 @@ const StyledSpinner = styled.svg`
   }
 `;
 
-export default Attendace;
+export default LunchBreak;

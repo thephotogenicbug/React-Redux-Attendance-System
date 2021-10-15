@@ -1,11 +1,8 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import styled, { createGlobalStyle, css } from "styled-components";
-import {
-  updateAttendaceAction,
-  updateAttendaceActionLunchend,
-} from "../actions/attendaceActions";
+import { updateAttendaceAction } from '../actions/attendaceActions';
 
 const SharedStyles = css`
   background-color: #eee;
@@ -67,12 +64,7 @@ const StyledButton = styled.button`
   height: 40px;
   padding: 0 20px;
   cursor: pointer;
-  margin-left: 4rem;
   box-sizing: border-box;
-  @media screen and (min-width: 320px) and (max-width: 1080px) {
-    margin-left: 1rem !important;
-    margin-left: 1rem;
-  }
 `;
 
 const StyledFieldset = styled.fieldset`
@@ -108,14 +100,13 @@ const Avatar = styled.div`
   }
 `;
 
-const SinglePageAttendaceData = ({ match }) => {
+const Test = ({match}) => {
+  const [lunchstartyes, processLunchStartYes] = useState("");
   const [name, processName] = useState("");
   const [mobile, processMobile] = useState("");
   const [unique, processUnique] = useState("");
   const [department, processDepartment] = useState("");
   const [logintime, processLoginTime] = useState("");
-  const [lunchstartyes, processLunchStartYes] = useState("");
-  const [lunchendyes, processLunchEndYes] = useState("");
 
   useEffect(() => {
     const fetching = async () => {
@@ -128,7 +119,6 @@ const SinglePageAttendaceData = ({ match }) => {
       processLoginTime(data.logintime);
       processDepartment(data.department);
       processLunchStartYes(data.lunchstart);
-      processLunchEndYes(data.lunchend);
 
       console.log(data);
     };
@@ -145,13 +135,6 @@ const SinglePageAttendaceData = ({ match }) => {
     e.preventDefault();
     dispatch(updateAttendaceAction(match.params.id, lunchstart));
   };
-   const SubmitHandler2 = (e) => {
-     e.preventDefault();
-     dispatch(updateAttendaceActionLunchend(match.params.id,lunchend));
-   };
-
-
-   // create two more functions in backend
 
   const showdate = new Date();
   const displaytodaydate =
@@ -162,14 +145,6 @@ const SinglePageAttendaceData = ({ match }) => {
     showdate.getFullYear();
   const dt = showdate.toDateString();
   const lunchstart =
-    showdate.getHours() +
-    ":" +
-    showdate.getMinutes() +
-    ":" +
-    showdate.getSeconds();
-
-
-  const lunchend =
     showdate.getHours() +
     ":" +
     showdate.getMinutes() +
@@ -189,19 +164,23 @@ const SinglePageAttendaceData = ({ match }) => {
           value={lunchstartyes}
           placeholder="Lunch Start"
         />
-        <StyledInput type="text" placeholder="Lunch End " value={lunchendyes} />
-        <StyledInput type="text" placeholder="Logout" />
-        {lunchstartyes == "blank" ? (
-          <StyledButton onClick={SubmitHandler}>Lunch Start</StyledButton>
-        ) : (
-          <StyledButton onClick={SubmitHandler}>Lunch End</StyledButton>
-        )}
+        <StyledInput
+          type="text"
+       
+          placeholder="Lunch End "
+        />
+        <StyledInput
+          type="text"
+   
+          placeholder="Logout"
+        />
+        <StyledButton onClick={SubmitHandler}>Submit</StyledButton>
       </StyledForm>
     </StyledFormWrapper>
   );
-};
+}
 
-export default SinglePageAttendaceData;
+export default Test
 
 //  {
 //    mobile.length == 0 ? (
@@ -210,3 +189,4 @@ export default SinglePageAttendaceData;
 //      <StyledInput type="text" />
 //    );
 //  }
+
