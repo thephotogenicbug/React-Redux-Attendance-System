@@ -145,13 +145,12 @@ const SinglePageAttendaceData = ({ match }) => {
     e.preventDefault();
     dispatch(updateAttendaceAction(match.params.id, lunchstart));
   };
-   const SubmitHandler2 = (e) => {
-     e.preventDefault();
-     dispatch(updateAttendaceActionLunchend(match.params.id,lunchend));
-   };
+  const SubmitHandler2 = (e) => {
+    e.preventDefault();
+    dispatch(updateAttendaceActionLunchend(match.params.id, lunchend));
+  };
 
-
-   // create two more functions in backend
+  // create two more functions in backend
 
   const showdate = new Date();
   const displaytodaydate =
@@ -167,7 +166,6 @@ const SinglePageAttendaceData = ({ match }) => {
     showdate.getMinutes() +
     ":" +
     showdate.getSeconds();
-
 
   const lunchend =
     showdate.getHours() +
@@ -193,8 +191,10 @@ const SinglePageAttendaceData = ({ match }) => {
         <StyledInput type="text" placeholder="Logout" />
         {lunchstartyes == "blank" ? (
           <StyledButton onClick={SubmitHandler}>Lunch Start</StyledButton>
+        ) : lunchendyes == "blank" ? (
+          <StyledButton onClick={SubmitHandler2}>Lunch End</StyledButton>
         ) : (
-          <StyledButton onClick={SubmitHandler}>Lunch End</StyledButton>
+          <StyledButton onClick={SubmitHandler2}>Logout</StyledButton>
         )}
       </StyledForm>
     </StyledFormWrapper>

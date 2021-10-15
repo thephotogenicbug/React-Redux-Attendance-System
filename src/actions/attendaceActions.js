@@ -154,7 +154,7 @@ export const updateAttendaceActionLunchend =
       };
 
       const { data } = await axios.put(
-        `http://localhost:5000/api/attendace/get/${id}`,
+        `http://localhost:5000/api/attendace/get/lunchend/${id}`,
         { lunchend },
         config
       );
