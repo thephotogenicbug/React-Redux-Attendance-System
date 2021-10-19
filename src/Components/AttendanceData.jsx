@@ -108,6 +108,7 @@ const AttendaceSpinner = styled.div`
 `;
 
 const AttendanceData = () => {
+   const [pic, setPic] = useState("");
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
@@ -126,6 +127,8 @@ const AttendanceData = () => {
     dispatch(listAttendaces());
     if (!userInfo) {
       history.push("/");
+    } else {
+      setPic(userInfo.pic);
     }
   }, [dispatch, successCreate, history, userInfo]);
 
@@ -158,7 +161,7 @@ const AttendanceData = () => {
                   <Invoice>
                     <Info>
                       <Avatar>
-                        <img src={attendace.pic} alt="" />
+                        <img src={pic} alt="" />
                       </Avatar>
 
                       <TextContainer>

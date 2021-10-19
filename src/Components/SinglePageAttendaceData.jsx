@@ -150,7 +150,7 @@ const SinglePageAttendaceData = ({ match }) => {
     e.preventDefault();
     dispatch(updateAttendaceAction(match.params.id, lunchstart));
 
-    history.push("/dashboard")
+    window.location.reload();
   };
   const SubmitHandler2 = (e) => {
     e.preventDefault();
@@ -164,8 +164,6 @@ const SinglePageAttendaceData = ({ match }) => {
     dispatch(updateAttendaceActionLogout(match.params.id, logout));
     window.location.reload();
   };
-
-  // create two more functions in backend
 
   const showdate = new Date();
   const displaytodaydate =
