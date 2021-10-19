@@ -1,8 +1,14 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React from "react";
 import styled from "styled-components";
-import SinglePageAttendaceData from "./SinglePageAttendaceData";
+import Attendace from "./Attendace";
+import Earnings from "./Earnings";
+import Info from "./Info";
+import Invoices from "./AttendanceData";
+import JoinSlack from "./JoinSlack";
+import Navbar from "./Navbar";
+import ProjectRecommendation from "./ProjectRecommendation";
+import Projects from "./Projects";
+import ApplyForLeave from "./ApplyForLeave";
 
 const Container = styled.div`
   width: 60%;
@@ -107,47 +113,14 @@ const ColumnTwo2 = styled.div`
   }
 `;
 
-const MainContentAttendaceInfo = ( {match }) => {
-    const params = useParams();
-    const [name, processName] = useState();
-    const [email, processEmail] = useState("");
-    const [dob, processDob] = useState("");
-    const [gender, processGender] = useState("");
-    const [marital, processMarital] = useState("");
-    const [mobile, processMobile] = useState("");
-    const [sslc, processSslc] = useState("");
-    const [puc, processPuc] = useState("");
-    const [grad, processGrad] = useState("");
-    const [postgrad, processPostGrad] = useState("");
-    const [workone, processWorkone] = useState("");
-    const [worktwo, processWorktwo] = useState("");
-    const [workthree, processWorkthree] = useState("");
-    const [achone, processAchone] = useState("");
-    const [achtwo, processAchtwo] = useState("");
-    const [achthree, processAchthree] = useState("");
-    const [address, processAddress] = useState("");
-    const [position, processPosition] = useState("");
-    const [report, processReport] = useState("");
-
-    useEffect(() => {
-      const fetching = async () => {
-        const { data } = await axios.get(
-          `http://localhost:5000/api/attendace/get/${match.params.id}`
-        );
-        processName(data.name);
-
-        console.log(data);
-      };
-
-      fetching();
-    }, [match.params.id]);
+const MainContentApplyForLeave = () => {
   return (
     <Container>
       <SubContainer>
-        <SinglePageAttendaceData />
+        <ApplyForLeave />
       </SubContainer>
     </Container>
   );
 };
 
-export default MainContentAttendaceInfo;
+export default MainContentApplyForLeave;

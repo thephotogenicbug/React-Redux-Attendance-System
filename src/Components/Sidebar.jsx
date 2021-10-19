@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Badge from "./Badge";
 import AvatarImg from "../assets/profile.png";
@@ -6,8 +6,11 @@ import { darkThemeColor } from "../utils";
 import { RiHomeLine, RiFileCopyLine } from "react-icons/ri";
 import { FaWallet } from "react-icons/fa";
 import { AiOutlinePieChart } from "react-icons/ai";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AiFillDashboard } from "react-icons/ai";
+import { Link as LinkTag } from "react-router-dom";
+import { listAttendaces } from "../actions/attendaceActions";
+import { useHistory } from "react-router-dom";
 
 const Container = styled.div`
   width: 20%;
@@ -93,35 +96,61 @@ const Sidebar = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [pic, setPic] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState();
+  const [picMessage, setPicMessage] = useState("");
+  const [message, setMessage] = useState("");
+
+    const dispatch = useDispatch();
+
+    const userUpdate = useSelector((state) => state.userUpdate);
+    const { loading, error, success } = userUpdate;
+
+     const history = useHistory();
+
+      useEffect(() => {
+        if (!userInfo) {
+          history.push("/");
+        } else {
+          setName(userInfo.name);
+          setEmail(userInfo.email);
+          setPic(userInfo.pic);
+        }
+      }, [history, userInfo]);
   return (
     <Container>
       <ProfileContainer>
-        <Avatar src={AvatarImg} />
+        <Avatar src={pic} />
         <Name>{`${userInfo?.name}`}</Name>
-        <Badge content="Level" />
+        {/* <Badge content="Level" /> */}
       </ProfileContainer>
       <LinksContainer>
         <Links>
-          <a href="/dashboard" style={{ textDecoration: "none" }}>
+          <LinkTag to="/dashboard" style={{ textDecoration: "none" }}>
             <Link>
               <AiFillDashboard />
               <h3>Dashboard</h3>
             </Link>
-          </a>
-          <a href="/attendance" style={{ textDecoration: "none" }}>
+          </LinkTag>
+          <LinkTag to="/attendance" style={{ textDecoration: "none" }}>
             <Link>
               <RiFileCopyLine />
               <h3>Attendace</h3>
             </Link>
-          </a>
-          <Link>
-            <RiHomeLine />
-            <h3>Apply For Leave</h3>
-          </Link>
+          </LinkTag>
+          <LinkTag to="applyforleave" style={{ textDecoration: "none" }}>
+            <Link>
+              <RiHomeLine />
+              <h3>Apply For Leave</h3>
+            </Link>
+          </LinkTag>
         </Links>
         <ContactContainer>
           <span>Having trouble ? </span>
-          <a href="#">Report Here</a>
+          <a href="mailto:naveen@eduprov.com">Report Here</a>
         </ContactContainer>
       </LinksContainer>
     </Container>

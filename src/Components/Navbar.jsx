@@ -91,10 +91,10 @@ const Navbar = () => {
         <span> {`${userInfo?.name}`}</span>
       </Text>
       <InputContainer>
-        <Icon>
+        {/* <Icon>
           <FiSearch />
         </Icon>
-        <Input type="text" placeholder="Search..." />
+        <Input type="text" placeholder="Search..." /> */}
         <PowerIcon>
           <AiOutlinePoweroff onClick={logoutHandler} />
         </PowerIcon>

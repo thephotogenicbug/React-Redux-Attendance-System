@@ -7,6 +7,7 @@ import Navbar from "./Navbar";
 import ProjectRecommendation from "./ProjectRecommendation";
 import Projects from "./Projects";
 import AttendanceData from "./AttendanceData";
+import Walkins from "./Walkins";
 
 const Container = styled.div`
   width: 60%;
@@ -33,7 +34,8 @@ const SubContainer = styled.div`
   }
 `;
 const TitleText = styled.h3`
-  height: 20%;
+  height: 50%;
+  margin-top:-2rem;
 `;
 const SectionOne = styled.div`
   display: flex;
@@ -79,7 +81,7 @@ const ColumnOne2 = styled.div`
 `;
 
 const InvoiceContainer = styled.div`
-  height: 60%;
+  height: 70%;
   @media screen and (min-width: 320px) and (max-width: 1080px) {
     height: max-content;
     display: flex;
@@ -122,6 +124,7 @@ const MainContent = () => {
           <ColumnOne1>
             {/* <Earnings /> */}
             <Info />
+            <Walkins />
           
           </ColumnOne1>
           {/* <ColumnTwo1>

@@ -7,6 +7,7 @@ import { register } from "../../actions/userActions";
 import LogoImg from "../../assets/logo.png";
 import Spinner from "../../Components/Spinner";
 import Input from "./Input";
+import InputFile from "./InputFile";
 
 const Container = styled.div`
   min-width: 400px;
@@ -117,6 +118,35 @@ const Sidebar = () => {
     }
   }, [history, userInfo]);
 
+  const postDetails = (pics) => {
+    if (
+      pics ===
+      "https://res.cloudinary.com/dv5jjlsd7/image/upload/v1631444571/user_1_qy7hlx.png"
+    ) {
+      return setPicMessage("Please Select an Image");
+    }
+    setPicMessage(null);
+    if (pics.type === "image/jpeg" || pics.type === "image/png") {
+      const data = new FormData();
+      data.append("file", pics);
+      data.append("upload_preset", "noteszipper");
+      data.append("cloud_name", "dv5jjlsd7");
+      fetch("https://api.cloudinary.com/v1_1/dv5jjlsd7/image/upload", {
+        method: "post",
+        body: data,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setPic(data.url.toString());
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      return setPicMessage("Please Select an Image");
+    }
+  };
+
   return (
     <Container>
       <LogoWrapper>
@@ -148,6 +178,11 @@ const Sidebar = () => {
           onChange={(e) => pickPassword(e.target.value)}
         />
         <Input type="password" placeholder="Confirm Password" />
+        <InputFile
+          type="file"
+          placeholder="Select Profile image"
+          onChange={(e) => postDetails(e.target.files[0])}
+        />
         <button onClick={Signup}>Sign Up</button>
       </Form>
       <div>

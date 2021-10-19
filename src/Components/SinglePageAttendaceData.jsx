@@ -1,9 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import styled, { createGlobalStyle, css } from "styled-components";
 import {
   updateAttendaceAction,
+  updateAttendaceActionLogout,
   updateAttendaceActionLunchend,
 } from "../actions/attendaceActions";
 
@@ -116,6 +118,7 @@ const SinglePageAttendaceData = ({ match }) => {
   const [logintime, processLoginTime] = useState("");
   const [lunchstartyes, processLunchStartYes] = useState("");
   const [lunchendyes, processLunchEndYes] = useState("");
+  const [logoutyes, processLogoutYes] = useState("");
 
   useEffect(() => {
     const fetching = async () => {
@@ -129,6 +132,7 @@ const SinglePageAttendaceData = ({ match }) => {
       processDepartment(data.department);
       processLunchStartYes(data.lunchstart);
       processLunchEndYes(data.lunchend);
+      processLogoutYes(data.logout);
 
       console.log(data);
     };
@@ -137,6 +141,7 @@ const SinglePageAttendaceData = ({ match }) => {
   }, [match.params.id, lunchstartyes]);
 
   const dispatch = useDispatch();
+  const history = useHistory()
 
   const attendaceUpdate = useSelector((state) => state.attendaceUpdate);
   const { loading, error } = attendaceUpdate;
@@ -144,10 +149,20 @@ const SinglePageAttendaceData = ({ match }) => {
   const SubmitHandler = (e) => {
     e.preventDefault();
     dispatch(updateAttendaceAction(match.params.id, lunchstart));
+
+    history.push("/dashboard")
   };
   const SubmitHandler2 = (e) => {
     e.preventDefault();
     dispatch(updateAttendaceActionLunchend(match.params.id, lunchend));
+
+    window.location.reload()
+  };
+
+  const SubmitHandler3 = (e) => {
+    e.preventDefault();
+    dispatch(updateAttendaceActionLogout(match.params.id, logout));
+    window.location.reload();
   };
 
   // create two more functions in backend
@@ -174,6 +189,12 @@ const SinglePageAttendaceData = ({ match }) => {
     ":" +
     showdate.getSeconds();
 
+  const logout =
+    showdate.getHours() +
+    ":" +
+    showdate.getMinutes() +
+    ":" +
+    showdate.getSeconds();
   return (
     <StyledFormWrapper>
       <StyledForm>
@@ -188,14 +209,16 @@ const SinglePageAttendaceData = ({ match }) => {
           placeholder="Lunch Start"
         />
         <StyledInput type="text" placeholder="Lunch End " value={lunchendyes} />
-        <StyledInput type="text" placeholder="Logout" />
-        {lunchstartyes == "blank" ? (
+        <StyledInput type="text" placeholder="Logout" value={logoutyes} />
+        {(!lunchstartyes && (
           <StyledButton onClick={SubmitHandler}>Lunch Start</StyledButton>
-        ) : lunchendyes == "blank" ? (
-          <StyledButton onClick={SubmitHandler2}>Lunch End</StyledButton>
-        ) : (
-          <StyledButton onClick={SubmitHandler2}>Logout</StyledButton>
-        )}
+        )) ||
+          (!lunchendyes && (
+            <StyledButton onClick={SubmitHandler2}>Lunch End</StyledButton>
+          )) ||
+          (!logoutyes && (
+            <StyledButton onClick={SubmitHandler3}>Logout</StyledButton>
+          ))}
       </StyledForm>
     </StyledFormWrapper>
   );

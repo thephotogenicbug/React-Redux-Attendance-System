@@ -16,7 +16,7 @@ const InvoicesContainer = styled.div`
   position: relative;
   width: 40rem;
   border-radius: 1rem;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   background-color: white;
   height: max-content;
   box-shadow: ${cardShadow};
@@ -104,7 +104,7 @@ const AttendaceSpinner = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 4rem;
-  margin-left: 28rem;
+  margin-left: 18rem;
 `;
 
 const AttendanceData = () => {
@@ -148,7 +148,6 @@ const AttendanceData = () => {
   return (
     <>
       <InvoicesContainer>
-        {_id}
         <CardContent>
           <AttendaceSpinner>{loading && <Spinner />}</AttendaceSpinner>
           {attendaces
@@ -159,7 +158,7 @@ const AttendanceData = () => {
                   <Invoice>
                     <Info>
                       <Avatar>
-                        <img src={AvatarImg} alt="" />
+                        <img src={attendace.pic} alt="" />
                       </Avatar>
 
                       <TextContainer>

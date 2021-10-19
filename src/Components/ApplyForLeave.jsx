@@ -6,6 +6,7 @@ import Badge from "./Badge";
 import { useDispatch, useSelector } from "react-redux";
 import { createAttendaceAction } from "../actions/attendaceActions";
 import { useHistory } from "react-router";
+import { createLeaveAction } from "../actions/leaveActions";
 
 const GlobalStyle = createGlobalStyle`
  html {
@@ -94,52 +95,32 @@ const StyledError = styled.div`
   color: #fa4d41;
 `;
 
-const Attendace = () => {
+const ApplyForLeave = () => {
   const [name, setName] = useState("");
-  const [mobile, setMobile] = useState("");
   const [unique, setUnique] = useState("");
-  const [department, setDepartment] = useState("");
-  const [lunchstart, setLunchStart] = useState("")
-  const [lunchend, setLunchEnd] = useState("")
-  const [logout, setLogout] = useState("");
+  const [from, setFrom] = useState("");
+  const [to, setTo] = useState("");
 
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const attendaceCreate = useSelector((state) => state.attendaceCreate);
-  const { loading, error, attendace } = attendaceCreate;
+  const leaveCreate = useSelector((state) => state.leaveCreate);
+  const { loading, error, leave } = leaveCreate;
 
   const SubmitHandler = (e) => {
     e.preventDefault();
-    dispatch(
-      createAttendaceAction(name, mobile, unique, department, logintime, lunchstart, lunchend, logout)
-    );
-    if (!name || !mobile || !unique || !department) return;
+    dispatch(createLeaveAction(name, unique, from, to));
+    if (!name || !unique || !from || !to) return;
 
     history.push("/dashboard");
   };
-
-  const showdate = new Date();
-  const displaytodaydate =
-    showdate.getDate() +
-    "/" +
-    (showdate.getMonth() + 1) +
-    "/" +
-    showdate.getFullYear();
-  const dt = showdate.toDateString();
-  const logintime =
-    showdate.getHours() +
-    ":" +
-    showdate.getMinutes() +
-    ":" +
-    showdate.getSeconds();
 
   return (
     <>
       <GlobalStyle />
       <StyledFormWrapper>
         <StyledForm>
-          <h2>Attendace Form</h2>
+          <h2>Apply For Leave</h2>
 
           <StyledInput
             type="text"
@@ -148,25 +129,27 @@ const Attendace = () => {
             onChange={(e) => setName(e.target.value)}
           />
           <StyledInput
-            type="number"
-            placeholder="Mobile No"
-            value={mobile}
-            onChange={(e) => setMobile(e.target.value)}
-          />
-          <StyledInput
             type="text"
             placeholder="Unique ID"
             value={unique}
             onChange={(e) => setUnique(e.target.value)}
           />
           <StyledInput
-            type="email"
-            placeholder="Department"
-            value={department}
-            onChange={(e) => setDepartment(e.target.value)}
+            type="text"
+            placeholder="From"
+            value={from}
+            onFocus={(e) => (e.target.type = "date")}
+            onChange={(e) => setFrom(e.target.value)}
+          />
+          <StyledInput
+            type="text"
+            placeholder="To"
+            value={to}
+            onFocus={(e) => (e.target.type = "date")}
+            onChange={(e) => setTo(e.target.value)}
           />
           <StyledError>{/* <p>Error message here</p> */}</StyledError>
-          <StyledButton onClick={SubmitHandler}>Submit Attendace</StyledButton>
+          <StyledButton onClick={SubmitHandler}>Submit</StyledButton>
           {loading ? (
             <StyledSpinner viewBox="0 0 50 50">
               <circle
@@ -227,4 +210,4 @@ const StyledSpinner = styled.svg`
   }
 `;
 
-export default Attendace;
+export default ApplyForLeave;
