@@ -150,19 +150,19 @@ const SinglePageAttendaceData = ({ match }) => {
     e.preventDefault();
     dispatch(updateAttendaceAction(match.params.id, lunchstart));
 
-    window.location.reload();
+    history.push('/dashboard')
   };
   const SubmitHandler2 = (e) => {
     e.preventDefault();
     dispatch(updateAttendaceActionLunchend(match.params.id, lunchend));
 
-    window.location.reload()
+    history.push("/dashboard");
   };
 
   const SubmitHandler3 = (e) => {
     e.preventDefault();
     dispatch(updateAttendaceActionLogout(match.params.id, logout));
-    window.location.reload();
+   history.push("/dashboard");
   };
 
   const showdate = new Date();
