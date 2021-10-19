@@ -154,7 +154,7 @@ export const updateAttendaceActionLunchend =
       };
 
       const { data } = await axios.put(
-        `http://localhost:5000/api/attendace/get/lunchend/${id}`,
+        `https://attendace-system-api.herokuapp.com/api/attendace/get/lunchend/${id}`,
         { lunchend },
         config
       );
@@ -192,7 +192,7 @@ export const updateAttendaceActionLunchend =
         };
 
         const { data } = await axios.put(
-          `http://localhost:5000/api/attendace/get/logout/${id}`,
+          `https://attendace-system-api.herokuapp.com/api/attendace/get/logout/${id}`,
           { logout },
           config
         );
