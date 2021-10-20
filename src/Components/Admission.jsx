@@ -111,12 +111,12 @@ const Admission = () => {
       <StyledFormWrapper>
         <StyledForm>
           <h2>Admission Form</h2>
-          <StyledInput type="text" placeholder="Student Name" />
-          <StyledInput type="number" placeholder="Admission Number" />
-          <StyledInput type="text" placeholder="Telecounselor Name" />
-          <StyledInput type="text" placeholder="Telecounselor Unique ID" />
-          <StyledInput type="text" placeholder="College / University Name" />
-          <StyledInput type="text" placeholder="Course Name" />
+          <StyledInput type="text" placeholder="Student Name" value={studentname} />
+          <StyledInput type="number" placeholder="Admission Number" value={admissionnumber} />
+          <StyledInput type="text" placeholder="Telecounselor Name" value={counselorname} />
+          <StyledInput type="text" placeholder="Telecounselor Unique ID" value={unique} />
+          <StyledInput type="text" placeholder="College / University Name" value={universityname} />
+          <StyledInput type="text" placeholder="Course Name" value={coursename} />
 
           <StyledError>{/* <p>Error message here</p> */}</StyledError>
           <StyledButton>Submit Data</StyledButton>
