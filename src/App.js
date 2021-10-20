@@ -9,6 +9,7 @@ import MainContainerTwo from "./Components/MainContainer2";
 import Signin from "./pages/Signin/Signin";
 import SinglePageAttendaceData from "./Components/SinglePageAttendaceData";
 import MainContainerApplyForLeave from "./Components/MainContainerApplyForLeave";
+import MainContainerAdmission from "./Components/MainContainerAdmission";
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
       <Route exact path="/attendance" component={MainContainerTwo} />
       <Route exact path="/dashboard/:id" component={SinglePageAttendaceData}/>
       <Route exact path="/applyforleave" component={MainContainerApplyForLeave}/>
+      <Route exact path="/admission" component={MainContainerAdmission} />
     </BrowserRouter>
     // <Container>
     //   <Sidebar />

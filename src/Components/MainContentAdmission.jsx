@@ -1,13 +1,15 @@
 import React from "react";
 import styled from "styled-components";
+import Attendace from "./Attendace";
 import Earnings from "./Earnings";
 import Info from "./Info";
+import Invoices from "./AttendanceData";
 import JoinSlack from "./JoinSlack";
 import Navbar from "./Navbar";
 import ProjectRecommendation from "./ProjectRecommendation";
 import Projects from "./Projects";
-import AttendanceData from "./AttendanceData";
-import Walkins from "./Walkins";
+import ApplyForLeave from "./ApplyForLeave";
+import Admission from "./Admission";
 
 const Container = styled.div`
   width: 60%;
@@ -34,8 +36,7 @@ const SubContainer = styled.div`
   }
 `;
 const TitleText = styled.h3`
-  height: 50%;
-  margin-top:-2rem;
+  height: 20%;
 `;
 const SectionOne = styled.div`
   display: flex;
@@ -81,7 +82,7 @@ const ColumnOne2 = styled.div`
 `;
 
 const InvoiceContainer = styled.div`
-  height: 70%;
+  height: 60%;
   @media screen and (min-width: 320px) and (max-width: 1080px) {
     height: max-content;
     display: flex;
@@ -108,42 +109,19 @@ const ColumnTwo2 = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
     flex-direction: column;
   }
 `;
 
-const MainContent = () => {
-
-  
-
+const MainContentAdmission = () => {
   return (
     <Container>
-      <Navbar />
       <SubContainer>
-        <SectionOne>
-          <ColumnOne1>
-            {/* <Earnings /> */}
-            <Info />
-            <Walkins />
-          </ColumnOne1>
-          {/* <ColumnTwo1>
-            <TitleText>Current Visits</TitleText>
-            <Projects />
-          </ColumnTwo1> */}
-        </SectionOne>
-        <SectionTwo>
-          <ColumnOne2>
-            <InvoiceContainer>
-              <TitleText>Attendace Data</TitleText>
-              <AttendanceData />
-            </InvoiceContainer>
-            {/* <JoinSlack /> */}
-          </ColumnOne2>
-          {/* <ColumnTwo2><ProjectRecommendation /></ColumnTwo2> */}
-        </SectionTwo>
+        <Admission/>
       </SubContainer>
     </Container>
   );
 };
 
-export default MainContent;
+export default MainContentAdmission;

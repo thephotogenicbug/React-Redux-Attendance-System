@@ -123,7 +123,7 @@ const SinglePageAttendaceData = ({ match }) => {
   useEffect(() => {
     const fetching = async () => {
       const { data } = await axios.get(
-        `https://attendace-system-api.herokuapp.com/api/attendace/get/${match.params.id}`
+        `http://localhost:5000/api/attendace/get/${match.params.id}`
       );
       processName(data.name);
       processMobile(data.mobile);
@@ -223,11 +223,3 @@ const SinglePageAttendaceData = ({ match }) => {
 };
 
 export default SinglePageAttendaceData;
-
-//  {
-//    mobile.length == 0 ? (
-//      <StyledButton>HI</StyledButton>
-//    ) : (
-//      <StyledInput type="text" />
-//    );
-//  }

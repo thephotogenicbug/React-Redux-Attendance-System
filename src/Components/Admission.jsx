@@ -27,11 +27,14 @@ const StyledFormWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 90vh;
   padding: 0 20px;
+  @media screen and (min-width: 320px) and (max-width: 1080px) {
+    height: 130vh;
+  }
 `;
 const StyledForm = styled.form`
-  width: 110%;
+  width: 120%;
   max-width: 700px;
   padding: 20px;
   background-color: #fff;
@@ -68,6 +71,7 @@ const StyledButton = styled.button`
   padding: 0 20px;
   cursor: pointer;
   box-sizing: border-box;
+  margin-left:1rem;
 `;
 const StyledFieldset = styled.fieldset`
   border: 1px solid #ddd;
@@ -94,80 +98,29 @@ const StyledError = styled.div`
   color: #fa4d41;
 `;
 
-const Attendace = () => {
-  const [name, setName] = useState("");
-  const [mobile, setMobile] = useState("");
+const Admission = () => {
+  const [studentname, setStudentName] = useState("");
+  const [admissionnumber, setAdmissionNumber] = useState("");
+  const [counselorname, setCounselorName] = useState("");
   const [unique, setUnique] = useState("");
-  const [department, setDepartment] = useState("");
-  const [lunchstart, setLunchStart] = useState("")
-  const [lunchend, setLunchEnd] = useState("")
-  const [logout, setLogout] = useState("");
-
-  const dispatch = useDispatch();
-  const history = useHistory();
-
-  const attendaceCreate = useSelector((state) => state.attendaceCreate);
-  const { loading, error, attendace } = attendaceCreate;
-
-  const SubmitHandler = (e) => {
-    e.preventDefault();
-    dispatch(
-      createAttendaceAction(name, mobile, unique, department, logintime, lunchstart, lunchend, logout)
-    );
-    if (!name || !mobile || !unique || !department) return;
-
-    history.push("/dashboard");
-  };
-
-  const showdate = new Date();
-  const displaytodaydate =
-    showdate.getDate() +
-    "/" +
-    (showdate.getMonth() + 1) +
-    "/" +
-    showdate.getFullYear();
-  const dt = showdate.toDateString();
-  const logintime =
-    showdate.getHours() +
-    ":" +
-    showdate.getMinutes() +
-    ":" +
-    showdate.getSeconds();
-
+  const [universityname, setUniversityName] = useState("");
+  const [coursename, setCourseName] = useState("");
   return (
     <>
       <GlobalStyle />
       <StyledFormWrapper>
         <StyledForm>
-          <h2>Attendace Form</h2>
+          <h2>Admission Form</h2>
+          <StyledInput type="text" placeholder="Student Name" />
+          <StyledInput type="number" placeholder="Admission Number" />
+          <StyledInput type="text" placeholder="Telecounselor Name" />
+          <StyledInput type="text" placeholder="Telecounselor Unique ID" />
+          <StyledInput type="text" placeholder="College / University Name" />
+          <StyledInput type="text" placeholder="Course Name" />
 
-          <StyledInput
-            type="text"
-            placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <StyledInput
-            type="number"
-            placeholder="Mobile No"
-            value={mobile}
-            onChange={(e) => setMobile(e.target.value)}
-          />
-          <StyledInput
-            type="text"
-            placeholder="Unique ID"
-            value={unique}
-            onChange={(e) => setUnique(e.target.value)}
-          />
-          <StyledInput
-            type="text"
-            placeholder="Department"
-            value={department}
-            onChange={(e) => setDepartment(e.target.value)}
-          />
           <StyledError>{/* <p>Error message here</p> */}</StyledError>
-          <StyledButton onClick={SubmitHandler}>Submit Attendace</StyledButton>
-          {loading ? (
+          <StyledButton>Submit Data</StyledButton>
+          {/* {loading ? (
             <StyledSpinner viewBox="0 0 50 50">
               <circle
                 className="path"
@@ -182,7 +135,7 @@ const Attendace = () => {
             <StyledError>{error}</StyledError>
           ) : (
             ""
-          )}
+          )} */}
         </StyledForm>
       </StyledFormWrapper>
     </>
@@ -227,4 +180,4 @@ const StyledSpinner = styled.svg`
   }
 `;
 
-export default Attendace;
+export default Admission;

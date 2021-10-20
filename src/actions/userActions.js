@@ -16,13 +16,10 @@ export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: USER_LOGIN_REQUEST });
 
-    const { data } = await axios.post(
-      "https://attendace-system-api.herokuapp.com/api/users/login",
-      {
-        email,
-        password,
-      }
-    );
+    const { data } = await axios.post("http://localhost:5000/api/users/login", {
+      email,
+      password,
+    });
 
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
 
@@ -42,15 +39,12 @@ export const register = (name, email, password, pic) => async (dispatch) => {
   try {
     dispatch({ type: USER_REGISTER_REQUEST });
 
-    const { data } = await axios.post(
-      "https://attendace-system-api.herokuapp.com/api/users",
-      {
-        name,
-        pic,
-        email,
-        password,
-      }
-    );
+    const { data } = await axios.post("http://localhost:5000/api/users", {
+      name,
+      pic,
+      email,
+      password,
+    });
 
     dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
@@ -88,7 +82,7 @@ export const updateProfile = (user) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.post(
-      "https://attendace-system-api.herokuapp.com/api/users/profile",
+      "http://localhost:5000/api/users/profile",
       user,
       config
     );

@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Badge from "./Badge";
 import { cardShadow, hoverEffect, themeColor } from "../utils";
+import { Link } from "react-router-dom";
+import AdmissionModal from './AdmissionModal'
 
 const InfoCard = styled.div`
   height: 60%;
@@ -59,35 +61,30 @@ const SubTitle = styled.h5`
 `;
 
 const Info = () => {
+  
+ const  [openModal, setOpenModal] = useState(false)
+
   return (
-    <InfoCard>
-      {/* <Card>
-        <CardContent>
-          <Row>
-            <Digit>98</Digit>
-            <InfoContainer>
-              <Title>Rank</Title>
-              <SubTitle>In top 20%</SubTitle>
-            </InfoContainer>
-          </Row>
-        </CardContent>
-      </Card> */}
-      <Card>
-        <CardContent>
-          <Row>
-            <Digit>0</Digit>
-            <InfoContainer>
-              <Title>Admissions</Title>
-              <SubTitle>0 this month</SubTitle>
-            </InfoContainer>
-          </Row>
-          <Row justify>
-            {/* <Badge content="Example" glow />
-            <Badge content="Example" glow /> */}
-          </Row>
-        </CardContent>
-      </Card>
-    </InfoCard>
+    <>
+      <InfoCard>
+        <Card>
+          <CardContent
+            onClick={() => {
+              setOpenModal(true);
+            }}
+          >
+            <Row>
+              <Digit>0</Digit>
+              <InfoContainer>
+                <Title>Admissions</Title>
+              </InfoContainer>
+            </Row>
+            <Row justify></Row>
+          </CardContent>
+        </Card>
+        {openModal && <AdmissionModal closeModal={setOpenModal} />}
+      </InfoCard>
+    </>
   );
 };
 
