@@ -6,6 +6,7 @@ import Badge from "./Badge";
 import { useDispatch, useSelector } from "react-redux";
 import { createAttendaceAction } from "../actions/attendaceActions";
 import { useHistory } from "react-router";
+import { createAdmissionAction } from "../actions/admissionActions";
 
 const GlobalStyle = createGlobalStyle`
  html {
@@ -71,7 +72,7 @@ const StyledButton = styled.button`
   padding: 0 20px;
   cursor: pointer;
   box-sizing: border-box;
-  margin-left:1rem;
+  margin-left: 1rem;
 `;
 const StyledFieldset = styled.fieldset`
   border: 1px solid #ddd;
@@ -105,21 +106,82 @@ const Admission = () => {
   const [unique, setUnique] = useState("");
   const [universityname, setUniversityName] = useState("");
   const [coursename, setCourseName] = useState("");
+
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const admissionCreate = useSelector((state) => state.admissionCreate);
+  const { loading, error, admission } = admissionCreate;
+
+  const SubmitHandler = (e) => {
+    e.preventDefault();
+    dispatch(
+      createAdmissionAction(
+        studentname,
+        admissionnumber,
+        counselorname,
+        unique,
+        universityname,
+        coursename
+      )
+    );
+    if (
+      !studentname ||
+      !admissionnumber ||
+      !counselorname ||
+      !unique ||
+      !universityname ||
+      !coursename
+    )
+      return;
+    history.push("/dashboard");
+  };
+
   return (
     <>
       <GlobalStyle />
       <StyledFormWrapper>
         <StyledForm>
           <h2>Admission Form</h2>
-          <StyledInput type="text" placeholder="Student Name" value={studentname} />
-          <StyledInput type="number" placeholder="Admission Number" value={admissionnumber} />
-          <StyledInput type="text" placeholder="Telecounselor Name" value={counselorname} />
-          <StyledInput type="text" placeholder="Telecounselor Unique ID" value={unique} />
-          <StyledInput type="text" placeholder="College / University Name" value={universityname} />
-          <StyledInput type="text" placeholder="Course Name" value={coursename} />
+          <StyledInput
+            type="text"
+            placeholder="Student Name"
+            value={studentname}
+            onChange={(e) => setStudentName(e.target.value)}
+          />
+          <StyledInput
+            type="number"
+            placeholder="Admission Number"
+            value={admissionnumber}
+            onChange={(e) => setAdmissionNumber(e.target.value)}
+          />
+          <StyledInput
+            type="text"
+            placeholder="Telecounselor Name"
+            value={counselorname}
+            onChange={(e) => setCounselorName(e.target.value)}
+          />
+          <StyledInput
+            type="text"
+            placeholder="Telecounselor Unique ID"
+            value={unique}
+            onChange={(e) => setUnique(e.target.value)}
+          />
+          <StyledInput
+            type="text"
+            placeholder="College / University Name"
+            value={universityname}
+            onChange={(e) => setUniversityName(e.target.value)}
+          />
+          <StyledInput
+            type="text"
+            placeholder="Course Name"
+            value={coursename}
+            onChange={(e) => setCourseName(e.target.value)}
+          />
 
           <StyledError>{/* <p>Error message here</p> */}</StyledError>
-          <StyledButton>Submit Data</StyledButton>
+          <StyledButton onClick={SubmitHandler}>Submit Data</StyledButton>
           {/* {loading ? (
             <StyledSpinner viewBox="0 0 50 50">
               <circle

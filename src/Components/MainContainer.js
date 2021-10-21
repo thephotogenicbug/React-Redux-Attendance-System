@@ -10,8 +10,9 @@ const Container = styled.div`
   background: linear-gradient(to bottom right, white 0%, #ffdfd1 70%);
   border-radius: 2rem;
   margin-bottom: 6rem;
-  @media screen and (min-width:320px) and (max-width:1080px){
-      flex-direction: column;
+  @media screen and (min-width: 320px) and (max-width: 1080px) {
+    flex-direction: column;
+    background: transparent;
   }
 `;
 

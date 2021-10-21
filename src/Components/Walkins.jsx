@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Badge from "./Badge";
 import { cardShadow, hoverEffect, themeColor } from "../utils";
+import WalkinsModal from "./WalkinsModal";
 
 const InfoCard = styled.div`
   height: 60%;
@@ -59,21 +60,17 @@ const SubTitle = styled.h5`
 `;
 
 const Walkins = () => {
+
+   const [openModal, setOpenModal] = useState(false);
+
   return (
     <InfoCard>
-      {/* <Card>
-        <CardContent>
-          <Row>
-            <Digit>98</Digit>
-            <InfoContainer>
-              <Title>Rank</Title>
-              <SubTitle>In top 20%</SubTitle>
-            </InfoContainer>
-          </Row>
-        </CardContent>
-      </Card> */}
       <Card>
-        <CardContent>
+        <CardContent
+          onClick={() => {
+            setOpenModal(true);
+          }}
+        >
           <Row>
             <Digit>0</Digit>
             <InfoContainer>
@@ -87,6 +84,7 @@ const Walkins = () => {
           </Row>
         </CardContent>
       </Card>
+      {openModal && <WalkinsModal closeModal={setOpenModal} />}
     </InfoCard>
   );
 };

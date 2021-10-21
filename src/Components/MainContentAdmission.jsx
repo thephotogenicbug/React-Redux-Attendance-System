@@ -1,14 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Attendace from "./Attendace";
-import Earnings from "./Earnings";
-import Info from "./Info";
-import Invoices from "./AttendanceData";
-import JoinSlack from "./JoinSlack";
-import Navbar from "./Navbar";
-import ProjectRecommendation from "./ProjectRecommendation";
-import Projects from "./Projects";
-import ApplyForLeave from "./ApplyForLeave";
 import Admission from "./Admission";
 
 const Container = styled.div`

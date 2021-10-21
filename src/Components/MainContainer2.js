@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import MainContent from "./MainContent";
 import MainContentTwo from "./MainContent2";
 import Sidebar from "./Sidebar";
 

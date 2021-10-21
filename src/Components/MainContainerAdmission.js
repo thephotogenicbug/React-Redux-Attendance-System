@@ -1,9 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import MainContent from "./MainContent";
-import MainContentTwo from "./MainContent2";
 import MainContentAdmission from "./MainContentAdmission";
-import MainContentApplyForLeave from "./MainContentApplyForLeave";
 import Sidebar from "./Sidebar";
 
 const Container = styled.div`

@@ -4,10 +4,10 @@ import Badge from "./Badge";
 import AvatarImg from "../assets/profile.png";
 import { darkThemeColor } from "../utils";
 import { RiHomeLine, RiFileCopyLine } from "react-icons/ri";
-import { FaWallet } from "react-icons/fa";
-import { AiOutlinePieChart } from "react-icons/ai";
+import { MdViewWeek } from "react-icons/md";
+import { RiSecurePaymentFill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
-import { AiFillDashboard } from "react-icons/ai";
+import { AiFillDashboard, AiOutlineLogin } from "react-icons/ai";
 import { Link as LinkTag } from "react-router-dom";
 import { listAttendaces } from "../actions/attendaceActions";
 import { useHistory } from "react-router-dom";
@@ -22,7 +22,8 @@ const Container = styled.div`
   align-content: center;
   gap: 3rem;
   @media screen and (min-width: 320px) and (max-width: 1080px) {
-    width: 100%;
+    width: 90%;
+    margin: auto;
     height: max-content !important;
   }
 `;
@@ -33,11 +34,11 @@ const ProfileContainer = styled.div`
   flex-direction: column;
 `;
 const Avatar = styled.img`
-  height: 5rem;
+  height: 4rem;
   border-radius: 6rem;
-  margin-top: 20%;
+  margin-top: 12%;
 `;
-const Name = styled.h1`
+const Name = styled.h2`
   color: white;
   font: 1.5rem;
   font-weight: 400;
@@ -137,14 +138,20 @@ const Sidebar = () => {
           </LinkTag>
           <LinkTag to="/attendance" style={{ textDecoration: "none" }}>
             <Link>
-              <RiFileCopyLine />
+              <AiOutlineLogin />
               <h3>Attendace</h3>
             </Link>
           </LinkTag>
           <LinkTag to="applyforleave" style={{ textDecoration: "none" }}>
             <Link>
-              <RiHomeLine />
+              <MdViewWeek />
               <h3>Apply For Leave</h3>
+            </Link>
+          </LinkTag>
+          <LinkTag to="applyforleave" style={{ textDecoration: "none" }}>
+            <Link>
+              <RiSecurePaymentFill />
+              <h3>Payroll</h3>
             </Link>
           </LinkTag>
         </Links>

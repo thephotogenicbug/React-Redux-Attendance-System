@@ -42,7 +42,7 @@ const LogoWrapper = styled.div`
   h3 {
     text-align: center;
     color: #ff8d8d;
-    font-size: 22px;
+    font-size: 18px;
   }
   span {
     color: #5dc399;
@@ -152,7 +152,7 @@ const Sidebar = () => {
       <LogoWrapper>
         <img src={LogoImg} />
         <h3>
-          Management <span>System</span>
+          Attendace & Payroll <span>System</span>
         </h3>
       </LogoWrapper>
       <Form>

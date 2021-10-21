@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Badge from "./Badge";
 import { cardShadow, hoverEffect, themeColor } from "../utils";
 import { Link } from "react-router-dom";
-import AdmissionModal from './AdmissionModal'
+import AdmissionModal from "./AdmissionModal";
+import { useDispatch } from "react-redux";
+import { listAdmissions } from "../actions/admissionActions";
+import { useSelector } from "react-redux";
+import axios from "axios";
+import { Spinner } from "react-bootstrap";
 
 const InfoCard = styled.div`
   height: 60%;
@@ -60,9 +65,29 @@ const SubTitle = styled.h5`
   font-weight: normal;
 `;
 
+const AttendaceSpinner = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4rem;
+  margin-left: 18rem;
+`;
+
+
 const Info = () => {
-  
- const  [openModal, setOpenModal] = useState(false)
+  const [openModal, setOpenModal] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const admissionList = useSelector((state) => state.admissionList);
+  const { loading , admissions, error } = admissionList;
+
+  console.log(admissions);
+
+  useEffect(() => {
+    dispatch(listAdmissions());
+  }, [dispatch]);
 
   return (
     <>
@@ -74,11 +99,12 @@ const Info = () => {
             }}
           >
             <Row>
-              <Digit>0</Digit>
+              {loading ? <Digit>0</Digit> : <Digit>{admissions?.length}</Digit>}
               <InfoContainer>
                 <Title>Admissions</Title>
               </InfoContainer>
             </Row>
+
             <Row justify></Row>
           </CardContent>
         </Card>

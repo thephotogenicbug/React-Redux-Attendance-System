@@ -14,7 +14,7 @@ import { Modal, Button } from "react-bootstrap";
 
 const InvoicesContainer = styled.div`
   position: relative;
-  width: 40rem;
+  width: 35rem;
   border-radius: 1rem;
   margin-top: 0.5rem;
   background-color: white;
@@ -161,7 +161,7 @@ const AttendanceData = () => {
                   <Invoice>
                     <Info>
                       <Avatar>
-                        <img src={pic} alt="" />
+                        <img src={pic} alt={attendace.name} />
                       </Avatar>
 
                       <TextContainer>

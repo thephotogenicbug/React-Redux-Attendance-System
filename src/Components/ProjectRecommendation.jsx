@@ -83,7 +83,8 @@ const ProjectRecommendation = () => {
   return (
     <RecommendProject>
       <CardContent>
-        <Detail>
+        <InfoName>Employee's on Leave</InfoName>
+        {/* <Detail>
           <InfoContainer>
             <Avatar>
               <img src={AvatarImg} alt="" />
@@ -105,7 +106,7 @@ const ProjectRecommendation = () => {
         <PriceContainer>
           <Price>$8700/month</Price>
           <Badge content="Full Time" clean />
-        </PriceContainer>
+        </PriceContainer> */}
       </CardContent>
     </RecommendProject>
   );
