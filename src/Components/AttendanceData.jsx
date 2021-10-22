@@ -107,6 +107,11 @@ const AttendaceSpinner = styled.div`
   margin-left: 18rem;
 `;
 
+const NoDataFoundMessage = styled.h4`
+ display: flex;
+ align-items: center;
+ justify-content: center;
+`
 const AttendanceData = () => {
    const [pic, setPic] = useState("");
   const dispatch = useDispatch();
@@ -123,8 +128,13 @@ const AttendanceData = () => {
   const history = useHistory();
   console.log(attendaces);
 
+  const [attendacelist, updateAttendaceList] = useState([])
+
+ 
+
   useEffect(() => {
     dispatch(listAttendaces());
+     updateAttendaceList(attendaces);
     if (!userInfo) {
       history.push("/");
     } else {
@@ -141,8 +151,6 @@ const AttendanceData = () => {
   const onPaginationChange = (start, end) => {
     setPagination({ start: start, end: end });
   };
-
-  const { _id, attendace } = useParams();
 
   const [interested, setInterested] = useState(false);
   const interestedhandleClose = () => setInterested(false);
@@ -188,24 +196,13 @@ const AttendanceData = () => {
             })}
         </CardContent>
       </InvoicesContainer>
-      <Pagination
-        showPerPage={showPerPage}
-        onPaginationChange={onPaginationChange}
-      />
-      {/* interested modal */}
-      <Modal show={interested} onHide={interestedhandleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Interested</Modal.Title>
-        </Modal.Header>
-        <p className="text-center text-success"></p>
-        <Modal.Body></Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={interestedhandleClose}>
-            Close
-          </Button>
-          <Button variant="primary">Save Changes</Button>
-        </Modal.Footer>
-      </Modal>
+
+      {(attendacelist.length >= 1 && (
+        <Pagination
+          showPerPage={showPerPage}
+          onPaginationChange={onPaginationChange}
+        />
+      )) || <NoDataFoundMessage>No Attendace Data Found</NoDataFoundMessage>}
     </>
   );
 };

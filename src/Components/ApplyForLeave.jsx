@@ -53,9 +53,10 @@ const StyledInput = styled.input`
 `;
 const StyledTextArea = styled.textarea`
   background-color: #eee;
-  width: 90%;
-  min-height: 100px;
+  width: 89%;
+  min-height: 50px;
   resize: none;
+  margin-left: 1rem !important;
   ${SharedStyles};
 `;
 const StyledButton = styled.button`
@@ -149,6 +150,7 @@ const ApplyForLeave = () => {
             onFocus={(e) => (e.target.type = "date")}
             onChange={(e) => setTo(e.target.value)}
           />
+          <StyledTextArea type="text" placeholder="Reason" />
           {(message && (
             <StyledError>
               <p>{message}</p>

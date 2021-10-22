@@ -34,9 +34,9 @@ const ProfileContainer = styled.div`
   flex-direction: column;
 `;
 const Avatar = styled.img`
-  height: 4rem;
+  height: 5rem;
   border-radius: 6rem;
-  margin-top: 12%;
+  margin-top: 14%;
 `;
 const Name = styled.h2`
   color: white;
