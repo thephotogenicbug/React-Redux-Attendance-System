@@ -155,9 +155,16 @@ const Walkin = () => {
             onChange={(e) => setCourseName(e.target.value)}
           />
 
-          <StyledError>
-            <p>{message}</p>
-          </StyledError>
+          {(message && (
+            <StyledError>
+              <p>{message}</p>
+            </StyledError>
+          )) ||
+            (error && (
+              <StyledError>
+                <p>{error}</p>
+              </StyledError>
+            ))}
           <StyledButton onClick={SubmitHandler}>Submit Data</StyledButton>
           {/* {loading ? (
             <StyledSpinner viewBox="0 0 50 50">
