@@ -164,7 +164,7 @@ const Admission = () => {
           />
           <StyledInput
             type="text"
-            placeholder="Telecounselor Unique ID"
+            placeholder="Employee Id (last 4 digits)"
             value={unique}
             onChange={(e) => setUnique(e.target.value)}
           />
