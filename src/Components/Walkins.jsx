@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Badge from "./Badge";
 import { cardShadow, hoverEffect, themeColor } from "../utils";
 import WalkinsModal from "./WalkinsModal";
+import { useDispatch } from "react-redux";
+import { listWalkins } from "../actions/walkinActions";
+import { useSelector } from "react-redux";
 
 const InfoCard = styled.div`
   height: 60%;
@@ -63,6 +66,15 @@ const Walkins = () => {
 
    const [openModal, setOpenModal] = useState(false);
 
+   const dispatch = useDispatch()
+
+   const walkinList = useSelector(state => state.walkinList)
+  const {loading, walkins, error} = walkinList
+
+  useEffect(() =>{
+    dispatch(listWalkins())
+  },[dispatch])
+
   return (
     <InfoCard>
       <Card>
@@ -72,10 +84,10 @@ const Walkins = () => {
           }}
         >
           <Row>
-            <Digit>0</Digit>
+            {loading ? <Digit>0</Digit> : <Digit>{walkins?.length}</Digit>}
             <InfoContainer>
               <Title>Walkins</Title>
-              <SubTitle>0 this month</SubTitle>
+             
             </InfoContainer>
           </Row>
           <Row justify>

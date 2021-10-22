@@ -6,6 +6,8 @@ import Badge from "./Badge";
 import { useDispatch, useSelector } from "react-redux";
 import { createAttendaceAction } from "../actions/attendaceActions";
 import { useHistory } from "react-router";
+import { createAdmissionAction } from "../actions/admissionActions";
+import { createWalkinAction } from "../actions/walkinActions";
 
 const GlobalStyle = createGlobalStyle`
  html {
@@ -27,11 +29,14 @@ const StyledFormWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 90vh;
   padding: 0 20px;
+  @media screen and (min-width: 320px) and (max-width: 1080px) {
+    height: 130vh;
+  }
 `;
 const StyledForm = styled.form`
-  width: 110%;
+  width: 120%;
   max-width: 700px;
   padding: 20px;
   background-color: #fff;
@@ -68,6 +73,7 @@ const StyledButton = styled.button`
   padding: 0 20px;
   cursor: pointer;
   box-sizing: border-box;
+  margin-left: 1rem;
 `;
 const StyledFieldset = styled.fieldset`
   border: 1px solid #ddd;
@@ -94,89 +100,65 @@ const StyledError = styled.div`
   color: #fa4d41;
 `;
 
-const Attendace = () => {
-  const [name, setName] = useState("");
-  const [mobile, setMobile] = useState("");
-  const [unique, setUnique] = useState("");
-  const [department, setDepartment] = useState("");
-  const [lunchstart, setLunchStart] = useState("")
-  const [lunchend, setLunchEnd] = useState("")
-  const [logout, setLogout] = useState("");
-  const [message, setMessage] = useState("");
+const Walkin = () => {
+  const [studentname, setStudentName] = useState("");
+  const [telecounselorname, setTeleCounselorName] = useState("");
+  const [universityname, setUniversityName] = useState("");
+  const [coursename, setCourseName] = useState("");
+  const [message, setMessage] = useState("")
 
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const attendaceCreate = useSelector((state) => state.attendaceCreate);
-  const { loading, error, attendace } = attendaceCreate;
+  const walkinCreate = useSelector((state) => state.walkinCreate);
+  const { loading, error, walkin } = walkinCreate;
 
   const SubmitHandler = (e) => {
     e.preventDefault();
     dispatch(
-      createAttendaceAction(name, mobile, unique, department, logintime, lunchstart, lunchend, logout)
+      createWalkinAction(studentname,telecounselorname,universityname,coursename)
     );
-    if (!name || !mobile || !unique || !department) return setMessage("Please fill all the fields");
-
+    setMessage("Data Submitted Successfully")
+    if (!studentname || !telecounselorname || !universityname || !coursename)
+      return setMessage("Please fill all the fields");
     history.push("/dashboard");
   };
-
-  const showdate = new Date();
-  const displaytodaydate =
-    showdate.getDate() +
-    "/" +
-    (showdate.getMonth() + 1) +
-    "/" +
-    showdate.getFullYear();
-  const dt = showdate.toDateString();
-  const logintime =
-    showdate.getHours() +
-    ":" +
-    showdate.getMinutes() +
-    ":" +
-    showdate.getSeconds();
 
   return (
     <>
       <GlobalStyle />
       <StyledFormWrapper>
         <StyledForm>
-          <h2>Attendace Form</h2>
+          <h2>Walkin Form</h2>
+          <StyledInput
+            type="text"
+            placeholder="Student Name"
+            value={studentname}
+            onChange={(e) => setStudentName(e.target.value)}
+          />
+          <StyledInput
+            type="text"
+            placeholder="Telecounselor Name"
+            value={telecounselorname}
+            onChange={(e) => setTeleCounselorName(e.target.value)}
+          />
+          <StyledInput
+            type="text"
+            placeholder="College / University Name"
+            value={universityname}
+            onChange={(e) => setUniversityName(e.target.value)}
+          />
+          <StyledInput
+            type="text"
+            placeholder="Course Name"
+            value={coursename}
+            onChange={(e) => setCourseName(e.target.value)}
+          />
 
-          <StyledInput
-            type="text"
-            placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <StyledInput
-            type="number"
-            placeholder="Mobile No"
-            value={mobile}
-            onChange={(e) => setMobile(e.target.value)}
-          />
-          <StyledInput
-            type="number"
-            placeholder="Employee Id (last 4 digits)"
-            value={unique}
-            onChange={(e) => setUnique(e.target.value)}
-          />
-          <StyledInput
-            type="text"
-            placeholder="Department"
-            value={department}
-            onChange={(e) => setDepartment(e.target.value)}
-          />
-          {(message && (
-            <StyledError>
-              <p>{message}</p>
-            </StyledError>
-          )) ||
-            (error && (
-              <StyledError>
-                <p>{error}</p>
-              </StyledError>
-            ))}
-          <StyledButton onClick={SubmitHandler}>Submit Attendace</StyledButton>
+          <StyledError>
+            <p>{message}</p>
+          </StyledError>
+          <StyledButton onClick={SubmitHandler}>Submit Data</StyledButton>
           {/* {loading ? (
             <StyledSpinner viewBox="0 0 50 50">
               <circle
@@ -237,4 +219,4 @@ const StyledSpinner = styled.svg`
   }
 `;
 
-export default Attendace;
+export default Walkin;

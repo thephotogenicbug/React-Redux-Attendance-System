@@ -23,7 +23,7 @@ export const createLeaveAction =
       };
 
       const { data } = await axios.post(
-        `http://localhost:5000/api/leave/create`,
+        `https://attendace-system-api.herokuapp.com/api/leave/create`,
         { name, unique, from, to },
         config
       );

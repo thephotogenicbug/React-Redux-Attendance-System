@@ -77,10 +77,18 @@ const Form = styled.form`
     }
   }
 `;
+const StyledError = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fa4d41;
+`;
 
 const Sidebar = () => {
   const [email, pickEmail] = useState("");
   const [password, pickPassword] = useState("");
+  const [confirmpassword, setConfirmPassword] = useState("");
+  const [message, setMessage] = useState("");
 
   const dispatch = useDispatch();
 
@@ -88,6 +96,8 @@ const Sidebar = () => {
   const { loading, error, userInfo } = userLogin;
 
   const history = useHistory();
+
+ 
 
   useEffect(() => {
     if (userInfo) {
@@ -97,9 +107,13 @@ const Sidebar = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-
+     if (password !== confirmpassword) {
+       setMessage("Password does not match");
+     }
     dispatch(login(email, password));
   };
+
+  
 
   return (
     <Container>
@@ -125,7 +139,22 @@ const Sidebar = () => {
           value={password}
           onChange={(e) => pickPassword(e.target.value)}
         />
-        <Input type="password" placeholder="Confirm Password" />
+        <Input
+          type="password"
+          value={confirmpassword}
+          placeholder="Confirm Password"
+          onChange={(e) => setConfirmPassword(e.target.value)}
+        />
+        {(message && (
+          <StyledError>
+            <p>{message}</p>
+          </StyledError>
+        )) ||
+          (error && (
+            <StyledError>
+              <p>{error}</p>
+            </StyledError>
+          ))}
         <button onClick={submitHandler}>Sign In</button>
       </Form>
       <div>

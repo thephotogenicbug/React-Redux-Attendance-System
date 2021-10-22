@@ -106,6 +106,7 @@ const Admission = () => {
   const [unique, setUnique] = useState("");
   const [universityname, setUniversityName] = useState("");
   const [coursename, setCourseName] = useState("");
+  const [message, setMessage] = useState("");
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -133,7 +134,7 @@ const Admission = () => {
       !universityname ||
       !coursename
     )
-      return;
+      return setMessage("Please fill all the fields");
     history.push("/dashboard");
   };
 
@@ -180,7 +181,16 @@ const Admission = () => {
             onChange={(e) => setCourseName(e.target.value)}
           />
 
-          <StyledError>{/* <p>Error message here</p> */}</StyledError>
+          {(message && (
+            <StyledError>
+              <p>{message}</p>
+            </StyledError>
+          )) ||
+            (error && (
+              <StyledError>
+                <p>{error}</p>
+              </StyledError>
+            ))}
           <StyledButton onClick={SubmitHandler}>Submit Data</StyledButton>
           {/* {loading ? (
             <StyledSpinner viewBox="0 0 50 50">

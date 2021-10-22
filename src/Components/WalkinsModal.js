@@ -90,8 +90,8 @@ const WalkinsModal = ({ closeModal }) => {
         </Title>
         <Body></Body>
         <Footer>
-          <Link to="/admission">
-            <FooterButton>Walkin's Form</FooterButton>
+          <Link to="/walkin">
+            <FooterButton>Walkin Form</FooterButton>
           </Link>
           <FooterButtonView>View All Details</FooterButtonView>
         </Footer>

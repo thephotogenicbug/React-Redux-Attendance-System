@@ -16,6 +16,7 @@ import {
   userRegisterReducer,
   userUpdateReducer,
 } from "./reducers/userReducer";
+import { walkinCreateReducer, walkinListReducer } from "./reducers/walkinReducer";
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
@@ -27,6 +28,8 @@ const reducer = combineReducers({
   userUpdate: userUpdateReducer,
   admissionCreate: admissionCreateReducer,
   admissionList: admissionListReducer,
+  walkinCreate: walkinCreateReducer,
+  walkinList: walkinListReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

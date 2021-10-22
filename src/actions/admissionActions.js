@@ -34,7 +34,7 @@ export const createAdmissionAction =
       };
 
       const { data } = await axios.post(
-        `http://localhost:5000/api/admission/create`,
+        `https://attendace-system-api.herokuapp.com/api/admission/create`,
         {
           studentname,
           admissionnumber,
@@ -79,8 +79,8 @@ export const listAdmissions = () => async (dispatch, getState) => {
       },
     };
 
-    const  {data}  = await axios.get(
-      `http://localhost:5000/api/admission/get`,
+    const { data } = await axios.get(
+      `https://attendace-system-api.herokuapp.com/api/admission/get`,
       config
     );
 

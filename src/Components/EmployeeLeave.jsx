@@ -79,7 +79,7 @@ const PriceContainer = styled.div`
 `;
 const Price = styled.div``;
 
-const ProjectRecommendation = () => {
+const EmployeeLeave = () => {
   return (
     <RecommendProject>
       <CardContent>
@@ -112,4 +112,4 @@ const ProjectRecommendation = () => {
   );
 };
 
-export default ProjectRecommendation;
+export default EmployeeLeave;

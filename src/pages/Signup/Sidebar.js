@@ -88,6 +88,13 @@ const Terms = styled.p`
   font-weight: 300;
 `;
 
+const StyledError = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fa4d41;
+`;
+
 const Sidebar = () => {
   const [name, pickName] = useState("");
   const [email, pickEmail] = useState("");
@@ -95,9 +102,9 @@ const Sidebar = () => {
   const [pic, setPic] = useState(
     "https://res.cloudinary.com/dv5jjlsd7/image/upload/v1631444571/user_1_qy7hlx.png"
   );
-  const [message, updateMessage] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
   const [setpicmessage, setPicMessage] = useState("");
+  const [message, setMessage] = useState("");
 
   const dispatch = useDispatch();
 
@@ -106,7 +113,9 @@ const Sidebar = () => {
 
   const Signup = async (e) => {
     e.preventDefault();
-
+    if (password !== confirmpassword) {
+      setMessage("Password does not match");
+    }
     dispatch(register(name, email, password, pic));
   };
 
@@ -177,12 +186,27 @@ const Sidebar = () => {
           value={password}
           onChange={(e) => pickPassword(e.target.value)}
         />
-        <Input type="password" placeholder="Confirm Password" />
+        <Input
+          type="password"
+          value={confirmpassword}
+          placeholder="Confirm Password"
+          onChange={(e) => setConfirmPassword(e.target.value)}
+        />
         <InputFile
           type="file"
           placeholder="Select Profile image"
           onChange={(e) => postDetails(e.target.files[0])}
         />
+        {(message && (
+          <StyledError>
+            <p>{message}</p>
+          </StyledError>
+        )) ||
+          (error && (
+            <StyledError>
+              <p>{error}</p>
+            </StyledError>
+          ))}
         <button onClick={Signup}>Sign Up</button>
       </Form>
       <div>

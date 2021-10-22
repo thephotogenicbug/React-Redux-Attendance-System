@@ -14,11 +14,11 @@ import {
 
 export const admissionCreateReducer = (state = {}, action) => {
   switch (action.type) {
-    case ATTENDACES_CREATE_REQUEST:
+    case ADMISSION_CREATE_REQUEST:
       return { loading: true };
-    case ATTENDACES_CREATE_SUCCESS:
+    case ADMISSION_CREATE_SUCCESS:
       return { loading: false, success: true };
-    case ATTENDACES_CREATE_FAIL:
+    case ADMISSION_CREATE_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;

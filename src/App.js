@@ -7,6 +7,7 @@ import Signin from "./pages/Signin/Signin";
 import SinglePageAttendaceData from "./Components/SinglePageAttendaceData";
 import MainContainerApplyForLeave from "./Components/MainContainerApplyForLeave";
 import MainContainerAdmission from "./Components/MainContainerAdmission";
+import MainContainerWalkin from "./Components/MainContainerWalkin";
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
       <Route exact path="/dashboard/:id" component={SinglePageAttendaceData}/>
       <Route exact path="/applyforleave" component={MainContainerApplyForLeave}/>
       <Route exact path="/admission" component={MainContainerAdmission} />
+      <Route exact path="/walkin" component={MainContainerWalkin} />
     </BrowserRouter>
     // <Container>
     //   <Sidebar />
