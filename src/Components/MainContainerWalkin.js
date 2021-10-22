@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import MainContent from "./MainContent";
+import MainContentTwo from "./MainContent2";
+import MainContentApplyForLeave from "./MainContentApplyForLeave";
+import MainContentWalkin from "./MainContentWalkin";
 import Sidebar from "./Sidebar";
 
 const Container = styled.div`
@@ -12,17 +15,16 @@ const Container = styled.div`
   margin-bottom: 6rem;
   @media screen and (min-width: 320px) and (max-width: 1080px) {
     flex-direction: column;
-    background: transparent;
   }
 `;
 
-const MainContainer = () => {
+const MainContainerWalkin = () => {
   return (
     <Container>
       <Sidebar />
-      <MainContent />
+      <MainContentWalkin />
     </Container>
   );
 };
 
-export default MainContainer;
+export default MainContainerWalkin;

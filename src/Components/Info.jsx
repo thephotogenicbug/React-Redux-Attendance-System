@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Badge from "./Badge";
 import { cardShadow, hoverEffect, themeColor } from "../utils";
+import { Link } from "react-router-dom";
+import AdmissionModal from "./AdmissionModal";
+import { useDispatch } from "react-redux";
+import { listAdmissions } from "../actions/admissionActions";
+import { useSelector } from "react-redux";
+import axios from "axios";
+import { Spinner } from "react-bootstrap";
 
 const InfoCard = styled.div`
   height: 60%;
@@ -58,36 +65,52 @@ const SubTitle = styled.h5`
   font-weight: normal;
 `;
 
+const AttendaceSpinner = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4rem;
+  margin-left: 18rem;
+`;
+
+
 const Info = () => {
+  const [openModal, setOpenModal] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const admissionList = useSelector((state) => state.admissionList);
+  const { loading , admissions, error } = admissionList;
+
+  console.log(admissions);
+
+  useEffect(() => {
+    dispatch(listAdmissions());
+  }, [dispatch]);
+
   return (
-    <InfoCard>
-      {/* <Card>
-        <CardContent>
-          <Row>
-            <Digit>98</Digit>
-            <InfoContainer>
-              <Title>Rank</Title>
-              <SubTitle>In top 20%</SubTitle>
-            </InfoContainer>
-          </Row>
-        </CardContent>
-      </Card> */}
-      <Card>
-        <CardContent>
-          <Row>
-            <Digit>0</Digit>
-            <InfoContainer>
-              <Title>Admissions</Title>
-              <SubTitle>0 this month</SubTitle>
-            </InfoContainer>
-          </Row>
-          <Row justify>
-            {/* <Badge content="Example" glow />
-            <Badge content="Example" glow /> */}
-          </Row>
-        </CardContent>
-      </Card>
-    </InfoCard>
+    <>
+      <InfoCard>
+        <Card>
+          <CardContent
+            onClick={() => {
+              setOpenModal(true);
+            }}
+          >
+            <Row>
+              {loading ? <Digit>0</Digit> : <Digit>{admissions?.length}</Digit>}
+              <InfoContainer>
+                <Title>Admissions</Title>
+              </InfoContainer>
+            </Row>
+
+            <Row justify></Row>
+          </CardContent>
+        </Card>
+        {openModal && <AdmissionModal closeModal={setOpenModal} />}
+      </InfoCard>
+    </>
   );
 };
 

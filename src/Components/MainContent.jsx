@@ -1,13 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import Earnings from "./Earnings";
 import Info from "./Info";
-import JoinSlack from "./JoinSlack";
 import Navbar from "./Navbar";
-import ProjectRecommendation from "./ProjectRecommendation";
-import Projects from "./Projects";
 import AttendanceData from "./AttendanceData";
 import Walkins from "./Walkins";
+import EmployeeLeave from "./EmployeeLeave";
 
 const Container = styled.div`
   width: 60%;
@@ -122,13 +119,11 @@ const MainContent = () => {
       <SubContainer>
         <SectionOne>
           <ColumnOne1>
-            {/* <Earnings /> */}
+          
             <Info />
             <Walkins />
-          
           </ColumnOne1>
           {/* <ColumnTwo1>
-            <TitleText>Current Visits</TitleText>
             <Projects />
           </ColumnTwo1> */}
         </SectionOne>
@@ -140,7 +135,7 @@ const MainContent = () => {
             </InvoiceContainer>
             {/* <JoinSlack /> */}
           </ColumnOne2>
-          {/* <ColumnTwo2><ProjectRecommendation /></ColumnTwo2> */}
+          <ColumnTwo2><EmployeeLeave/></ColumnTwo2>
         </SectionTwo>
       </SubContainer>
     </Container>

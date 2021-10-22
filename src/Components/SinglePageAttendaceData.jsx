@@ -223,11 +223,3 @@ const SinglePageAttendaceData = ({ match }) => {
 };
 
 export default SinglePageAttendaceData;
-
-//  {
-//    mobile.length == 0 ? (
-//      <StyledButton>HI</StyledButton>
-//    ) : (
-//      <StyledInput type="text" />
-//    );
-//  }

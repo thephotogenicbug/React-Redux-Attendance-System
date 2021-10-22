@@ -5,7 +5,7 @@ import AvatarImg from "../assets/profile.png";
 
 const YourProjects = styled.div`
   height: 70;
-  margin-top: 1rem !important;
+  margin-top: 3rem !important;
   width: 180%;
   background-color: white;
   margin: 0;
@@ -62,24 +62,15 @@ const Projects = () => {
   return (
     <YourProjects>
       <Project>
-        <Avatar>
+        {/* <Avatar>
           <img src={AvatarImg} alt="" />
-        </Avatar>
+        </Avatar> */}
         <Detail>
-          <Title>Student Name</Title>
-          <SubTitle>Counseling</SubTitle>
+          <Title>Holiday Dates</Title>
+          {/* <SubTitle>Counseling</SubTitle> */}
         </Detail>
       </Project>
-      {/* <Project>
-        <Avatar>
-          <img src={AvatarImg} alt="" />
-        </Avatar>
-        <Detail>
-          <Title>Student Name</Title>
-          <SubTitle>Counseling</SubTitle>
-        </Detail>
-      </Project> */}
-      <AllProjects>See all Visitors</AllProjects>
+      <AllProjects>See all Holiday info</AllProjects>
     </YourProjects>
   );
 };

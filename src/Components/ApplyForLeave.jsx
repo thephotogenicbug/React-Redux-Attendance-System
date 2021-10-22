@@ -100,6 +100,7 @@ const ApplyForLeave = () => {
   const [unique, setUnique] = useState("");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
+  const [message, setMessage] = useState("");
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -110,7 +111,7 @@ const ApplyForLeave = () => {
   const SubmitHandler = (e) => {
     e.preventDefault();
     dispatch(createLeaveAction(name, unique, from, to));
-    if (!name || !unique || !from || !to) return;
+    if (!name || !unique || !from || !to) return setMessage("Please fill all the fields");
 
     history.push("/dashboard");
   };
@@ -130,7 +131,7 @@ const ApplyForLeave = () => {
           />
           <StyledInput
             type="text"
-            placeholder="Unique ID"
+            placeholder="Employee Id (last 4 digits)"
             value={unique}
             onChange={(e) => setUnique(e.target.value)}
           />
@@ -148,9 +149,18 @@ const ApplyForLeave = () => {
             onFocus={(e) => (e.target.type = "date")}
             onChange={(e) => setTo(e.target.value)}
           />
-          <StyledError>{/* <p>Error message here</p> */}</StyledError>
+          {(message && (
+            <StyledError>
+              <p>{message}</p>
+            </StyledError>
+          )) ||
+            (error && (
+              <StyledError>
+                <p>{error}</p>
+              </StyledError>
+            ))}
           <StyledButton onClick={SubmitHandler}>Submit</StyledButton>
-          {loading ? (
+          {/* {loading ? (
             <StyledSpinner viewBox="0 0 50 50">
               <circle
                 className="path"
@@ -165,7 +175,7 @@ const ApplyForLeave = () => {
             <StyledError>{error}</StyledError>
           ) : (
             ""
-          )}
+          )} */}
         </StyledForm>
       </StyledFormWrapper>
     </>

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import ApplyForLeave from "./ApplyForLeave";
+import Admission from "./Admission";
 
 const Container = styled.div`
   width: 60%;
@@ -105,14 +105,14 @@ const ColumnTwo2 = styled.div`
   }
 `;
 
-const MainContentApplyForLeave = () => {
+const MainContentAdmission = () => {
   return (
     <Container>
       <SubContainer>
-        <ApplyForLeave />
+        <Admission/>
       </SubContainer>
     </Container>
   );
 };
 
-export default MainContentApplyForLeave;
+export default MainContentAdmission;

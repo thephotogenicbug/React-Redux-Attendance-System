@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import MainContent from "./MainContent";
+import MainContentAdmission from "./MainContentAdmission";
 import Sidebar from "./Sidebar";
 
 const Container = styled.div`
@@ -12,17 +12,16 @@ const Container = styled.div`
   margin-bottom: 6rem;
   @media screen and (min-width: 320px) and (max-width: 1080px) {
     flex-direction: column;
-    background: transparent;
   }
 `;
 
-const MainContainer = () => {
+const MainContainerAdmission = () => {
   return (
     <Container>
       <Sidebar />
-      <MainContent />
+      <MainContentAdmission />
     </Container>
   );
 };
 
-export default MainContainer;
+export default MainContainerAdmission;

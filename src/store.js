@@ -2,12 +2,21 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import {
+  admissionCreateReducer,
+  admissionListReducer,
+} from "./reducers/admissionReducer";
+import {
   attendaceCreateReducer,
   attendaceListReducer,
   attendaceUpdateReducer,
 } from "./reducers/attendancesReducer";
 import { leaveCreateReducer } from "./reducers/leaveReducer";
-import { userLoginReducer, userRegisterReducer, userUpdateReducer } from "./reducers/userReducer";
+import {
+  userLoginReducer,
+  userRegisterReducer,
+  userUpdateReducer,
+} from "./reducers/userReducer";
+import { walkinCreateReducer, walkinListReducer } from "./reducers/walkinReducer";
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
@@ -17,6 +26,10 @@ const reducer = combineReducers({
   attendaceUpdate: attendaceUpdateReducer,
   leaveCreate: leaveCreateReducer,
   userUpdate: userUpdateReducer,
+  admissionCreate: admissionCreateReducer,
+  admissionList: admissionListReducer,
+  walkinCreate: walkinCreateReducer,
+  walkinList: walkinListReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

@@ -1,13 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import Attendace from "./Attendace";
-import Earnings from "./Earnings";
-import Info from "./Info";
-import Invoices from "./AttendanceData";
-import JoinSlack from "./JoinSlack";
-import Navbar from "./Navbar";
-import ProjectRecommendation from "./ProjectRecommendation";
-import Projects from "./Projects";
 
 const Container = styled.div`
   width: 60%;

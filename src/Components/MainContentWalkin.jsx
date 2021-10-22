@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import ApplyForLeave from "./ApplyForLeave";
+import Admission from "./Admission";
+import Walkin from "./Walkin";
 
 const Container = styled.div`
   width: 60%;
@@ -105,14 +106,14 @@ const ColumnTwo2 = styled.div`
   }
 `;
 
-const MainContentApplyForLeave = () => {
+const MainContentWalkin = () => {
   return (
     <Container>
       <SubContainer>
-        <ApplyForLeave />
+        <Walkin />
       </SubContainer>
     </Container>
   );
 };
 
-export default MainContentApplyForLeave;
+export default MainContentWalkin;
