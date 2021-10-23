@@ -155,8 +155,8 @@ const Attendace = () => {
             onChange={(e) => setMobile(e.target.value)}
           />
           <StyledInput
-            type="number"
-            placeholder="Employee Id (last 4 digits)"
+            type="text"
+            placeholder="Employee Id"
             value={unique}
             onChange={(e) => setUnique(e.target.value)}
           />
