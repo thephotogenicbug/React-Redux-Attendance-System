@@ -154,7 +154,7 @@ const AttendanceData = () => {
         <CardContent>
           <AttendaceSpinner>{loading && <Spinner />}</AttendaceSpinner>
           {attendaces
-            ?.slice(pagination.start, pagination.end)
+            ?.reverse().slice(pagination.start, pagination.end)
             .map((attendace, index) => {
               return (
                 <>
