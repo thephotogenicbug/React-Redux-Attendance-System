@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styled, { createGlobalStyle, css } from "styled-components";
@@ -123,16 +124,16 @@ const SinglePageAttendaceData = ({ match }) => {
   useEffect(() => {
     const fetching = async () => {
       const { data } = await axios.get(
-        `https://attendace-system-api.herokuapp.com/api/attendace/get/${match.params.id}`
+        `http://localhost:5000/api/attendace/get/${match.params.id}`
       );
-      processName(data.name);
-      processMobile(data.mobile);
-      processUnique(data.unique);
-      processLoginTime(data.logintime);
-      processDepartment(data.department);
-      processLunchStartYes(data.lunchstart);
-      processLunchEndYes(data.lunchend);
-      processLogoutYes(data.logout);
+      processName(data?.name);
+      processMobile(data?.mobile);
+      processUnique(data?.unique);
+      processLoginTime(data?.logintime);
+      processDepartment(data?.department);
+      processLunchStartYes(data?.lunchstart);
+      processLunchEndYes(data?.lunchend);
+      processLogoutYes(data?.logout);
 
       console.log(data);
     };
@@ -141,7 +142,7 @@ const SinglePageAttendaceData = ({ match }) => {
   }, [match.params.id, lunchstartyes]);
 
   const dispatch = useDispatch();
-  const history = useHistory()
+  const history = useHistory();
 
   const attendaceUpdate = useSelector((state) => state.attendaceUpdate);
   const { loading, error } = attendaceUpdate;
@@ -150,7 +151,7 @@ const SinglePageAttendaceData = ({ match }) => {
     e.preventDefault();
     dispatch(updateAttendaceAction(match.params.id, lunchstart));
 
-    history.push('/dashboard')
+    history.push("/dashboard");
   };
   const SubmitHandler2 = (e) => {
     e.preventDefault();
@@ -162,7 +163,7 @@ const SinglePageAttendaceData = ({ match }) => {
   const SubmitHandler3 = (e) => {
     e.preventDefault();
     dispatch(updateAttendaceActionLogout(match.params.id, logout));
-   history.push("/dashboard");
+    history.push("/dashboard");
   };
 
   const showdate = new Date();
@@ -194,31 +195,41 @@ const SinglePageAttendaceData = ({ match }) => {
     ":" +
     showdate.getSeconds();
   return (
-    <StyledFormWrapper>
-      <StyledForm>
-        <StyledInput type="text" value={name} />
-        <StyledInput type="text" value={mobile} />
-        <StyledInput type="text" value={unique} />
-        <StyledInput type="text" value={logintime} />
-        <StyledInput type="text" value={department} />
-        <StyledInput
-          type="text"
-          value={lunchstartyes}
-          placeholder="Lunch Start"
-        />
-        <StyledInput type="text" placeholder="Lunch End " value={lunchendyes} />
-        <StyledInput type="text" placeholder="Logout" value={logoutyes} />
-        {(!lunchstartyes && (
-          <StyledButton onClick={SubmitHandler}>Lunch Start</StyledButton>
-        )) ||
-          (!lunchendyes && (
-            <StyledButton onClick={SubmitHandler2}>Lunch End</StyledButton>
-          )) ||
-          (!logoutyes && (
-            <StyledButton onClick={SubmitHandler3}>Logout</StyledButton>
-          ))}
-      </StyledForm>
-    </StyledFormWrapper>
+    <>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <StyledFormWrapper>
+          <StyledForm>
+            <StyledInput type="text" value={name} />
+            <StyledInput type="text" value={mobile} />
+            <StyledInput type="text" value={unique} />
+            <StyledInput type="text" value={logintime} />
+            <StyledInput type="text" value={department} />
+            <StyledInput
+              type="text"
+              value={lunchstartyes}
+              placeholder="Lunch Start"
+            />
+            <StyledInput
+              type="text"
+              placeholder="Lunch End "
+              value={lunchendyes}
+            />
+            <StyledInput type="text" placeholder="Logout" value={logoutyes} />
+            {(!lunchstartyes && (
+              <StyledButton onClick={SubmitHandler}>Lunch Start</StyledButton>
+            )) ||
+              (!lunchendyes && (
+                <StyledButton onClick={SubmitHandler2}>Lunch End</StyledButton>
+              )) ||
+              (!logoutyes && (
+                <StyledButton onClick={SubmitHandler3}>Logout</StyledButton>
+              ))}
+          </StyledForm>
+        </StyledFormWrapper>
+      )}
+    </>
   );
 };
 

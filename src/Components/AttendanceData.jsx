@@ -10,7 +10,6 @@ import { listAttendaces } from "../actions/attendaceActions";
 import { Link } from "react-router-dom";
 import Spinner from "./Spinner";
 import Pagination from "./Pagination";
-import { Modal, Button } from "react-bootstrap";
 
 const InvoicesContainer = styled.div`
   position: relative;
@@ -108,12 +107,12 @@ const AttendaceSpinner = styled.div`
 `;
 
 const NoDataFoundMessage = styled.h4`
- display: flex;
- align-items: center;
- justify-content: center;
-`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 const AttendanceData = () => {
-   const [pic, setPic] = useState("");
+  const [pic, setPic] = useState("");
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
@@ -128,19 +127,7 @@ const AttendanceData = () => {
   const history = useHistory();
   console.log(attendaces);
 
-  const [attendacelist, updateAttendaceList] = useState([])
-
- 
-
-  useEffect(() => {
-    dispatch(listAttendaces());
-     updateAttendaceList(attendaces);
-    if (!userInfo) {
-      history.push("/");
-    } else {
-      setPic(userInfo.pic);
-    }
-  }, [dispatch, successCreate, history, userInfo]);
+  const [attendacelist, updateAttendaceList] = useState([]);
 
   const [showPerPage, setShowPerPage] = useState(2);
   const [pagination, setPagination] = useState({
@@ -152,6 +139,16 @@ const AttendanceData = () => {
     setPagination({ start: start, end: end });
   };
 
+  useEffect(() => {
+    dispatch(listAttendaces());
+    updateAttendaceList(attendaces);
+    if (!userInfo) {
+      history.push("/");
+    } else {
+      setPic(userInfo.pic);
+    }
+  }, [dispatch, successCreate, history, userInfo]);
+
   const [interested, setInterested] = useState(false);
   const interestedhandleClose = () => setInterested(false);
   const interestedModal = () => setInterested(true);
@@ -162,7 +159,8 @@ const AttendanceData = () => {
         <CardContent>
           <AttendaceSpinner>{loading && <Spinner />}</AttendaceSpinner>
           {attendaces
-            ?.slice(pagination.start, pagination.end)
+            ?.reverse()
+            .slice(pagination.start, pagination.end)
             .map((attendace, index) => {
               return (
                 <>
@@ -197,7 +195,7 @@ const AttendanceData = () => {
         </CardContent>
       </InvoicesContainer>
 
-      {(attendacelist.length >= 1 && (
+      {(attendacelist?.length >= 0 && (
         <Pagination
           showPerPage={showPerPage}
           onPaginationChange={onPaginationChange}

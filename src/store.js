@@ -10,13 +10,16 @@ import {
   attendaceListReducer,
   attendaceUpdateReducer,
 } from "./reducers/attendancesReducer";
-import { leaveCreateReducer } from "./reducers/leaveReducer";
+import { leaveCreateReducer, leaveListReducer } from "./reducers/leaveReducer";
 import {
   userLoginReducer,
   userRegisterReducer,
   userUpdateReducer,
 } from "./reducers/userReducer";
-import { walkinCreateReducer, walkinListReducer } from "./reducers/walkinReducer";
+import {
+  walkinCreateReducer,
+  walkinListReducer,
+} from "./reducers/walkinReducer";
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
@@ -30,6 +33,7 @@ const reducer = combineReducers({
   admissionList: admissionListReducer,
   walkinCreate: walkinCreateReducer,
   walkinList: walkinListReducer,
+  leaveList: leaveListReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

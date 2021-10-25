@@ -8,6 +8,7 @@ import SinglePageAttendaceData from "./Components/SinglePageAttendaceData";
 import MainContainerApplyForLeave from "./Components/MainContainerApplyForLeave";
 import MainContainerAdmission from "./Components/MainContainerAdmission";
 import MainContainerWalkin from "./Components/MainContainerWalkin";
+import MainContainerPayroll from "./Components/MainContainerPayroll";
 
 function App() {
 
@@ -21,11 +22,8 @@ function App() {
       <Route exact path="/applyforleave" component={MainContainerApplyForLeave}/>
       <Route exact path="/admission" component={MainContainerAdmission} />
       <Route exact path="/walkin" component={MainContainerWalkin} />
+      <Route exact path="/payroll" component={MainContainerPayroll} />
     </BrowserRouter>
-    // <Container>
-    //   <Sidebar />
-    //   <MainContent />
-    // </Container>
   );
 }
 

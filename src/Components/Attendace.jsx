@@ -113,11 +113,10 @@ const Attendace = () => {
   const SubmitHandler = (e) => {
     e.preventDefault();
     dispatch(
-      createAttendaceAction(name, mobile, unique, department, logintime, lunchstart, lunchend, logout)
+      createAttendaceAction(name, mobile, department, logintime, lunchstart, lunchend, logout)
     );
-    if (!name || !mobile || !unique || !department) return setMessage("Please fill all the fields");
+    if (!name || !mobile || !department) return setMessage("Please fill all the fields");
 
-    history.push("/dashboard");
   };
 
   const showdate = new Date();
@@ -154,12 +153,12 @@ const Attendace = () => {
             value={mobile}
             onChange={(e) => setMobile(e.target.value)}
           />
-          <StyledInput
-            type="number"
-            placeholder="Employee Id (last 4 digits)"
+          {/* <StyledInput
+            type="text"
+            placeholder="Employee Id"
             value={unique}
             onChange={(e) => setUnique(e.target.value)}
-          />
+          /> */}
           <StyledInput
             type="text"
             placeholder="Department"

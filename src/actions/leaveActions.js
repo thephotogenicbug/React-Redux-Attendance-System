@@ -9,7 +9,7 @@ import {
 } from "../constants/leaveConstants";
 
 export const createLeaveAction =
-  (name, unique, from, to) => async (dispatch, getState) => {
+  (name, from, to, leaveoption, reason) => async (dispatch, getState) => {
     try {
       dispatch({
         type: LEAVE_CREATE_REQUEST,
@@ -27,7 +27,7 @@ export const createLeaveAction =
 
       const { data } = await axios.post(
         `http://localhost:5000/api/leave/create`,
-        { name, unique, from, to },
+        { name, from, to, leaveoption, reason },
         config
       );
       dispatch({

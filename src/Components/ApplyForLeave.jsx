@@ -98,9 +98,10 @@ const StyledError = styled.div`
 
 const ApplyForLeave = () => {
   const [name, setName] = useState("");
-  const [unique, setUnique] = useState("");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
+  const [leaveoption, setLeaveOption] = useState("");
+  const [reason, setReason] = useState("");
   const [message, setMessage] = useState("");
 
   const dispatch = useDispatch();
@@ -111,8 +112,9 @@ const ApplyForLeave = () => {
 
   const SubmitHandler = (e) => {
     e.preventDefault();
-    dispatch(createLeaveAction(name, unique, from, to));
-    if (!name || !unique || !from || !to) return setMessage("Please fill all the fields");
+    dispatch(createLeaveAction(name, from, to, leaveoption, reason));
+    if (!name || !from || !to || !leaveoption || !reason)
+      return setMessage("Please fill all the fields");
 
     history.push("/dashboard");
   };
@@ -132,12 +134,6 @@ const ApplyForLeave = () => {
           />
           <StyledInput
             type="text"
-            placeholder="Employee Id (last 4 digits)"
-            value={unique}
-            onChange={(e) => setUnique(e.target.value)}
-          />
-          <StyledInput
-            type="text"
             placeholder="From"
             value={from}
             onFocus={(e) => (e.target.type = "date")}
@@ -150,7 +146,18 @@ const ApplyForLeave = () => {
             onFocus={(e) => (e.target.type = "date")}
             onChange={(e) => setTo(e.target.value)}
           />
-          <StyledTextArea type="text" placeholder="Reason" />
+          <StyledInput
+            type="text"
+            placeholder="EL, SL, CL, LOP, Others"
+            value={leaveoption}
+            onChange={(e) => setLeaveOption(e.target.value)}
+          />
+          <StyledTextArea
+            type="text"
+            placeholder="Reason"
+            value={reason}
+            onChange={(e) => setReason(e.target.value)}
+          />
           {(message && (
             <StyledError>
               <p>{message}</p>

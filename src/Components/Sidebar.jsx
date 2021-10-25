@@ -142,13 +142,13 @@ const Sidebar = () => {
               <h3>Attendace</h3>
             </Link>
           </LinkTag>
-          <LinkTag to="applyforleave" style={{ textDecoration: "none" }}>
+          <LinkTag to="/applyforleave" style={{ textDecoration: "none" }}>
             <Link>
               <MdViewWeek />
               <h3>Apply For Leave</h3>
             </Link>
           </LinkTag>
-          <LinkTag to="applyforleave" style={{ textDecoration: "none" }}>
+          <LinkTag to="/payroll" style={{ textDecoration: "none" }}>
             <Link>
               <RiSecurePaymentFill />
               <h3>Payroll</h3>
