@@ -12,7 +12,7 @@ import {
 } from "../constants/attendacesConstants";
 
 export const createAttendaceAction =
-  (name, mobile, unique, department, logintime, lunchstart, lunchend, logout) =>
+  (name, mobile, department, logintime, lunchstart, lunchend, logout) =>
   async (dispatch, getState) => {
     try {
       dispatch({
@@ -34,7 +34,6 @@ export const createAttendaceAction =
         {
           name,
           mobile,
-          unique,
           department,
           logintime,
           lunchstart,
