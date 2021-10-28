@@ -14,7 +14,7 @@ const RecommendProject = styled.div`
   padding: 1rem;
   background-color: white;
   width: 26vw;
-  margin-top: 1rem;
+  margin-top: -2rem;
   box-shadow: ${cardShadow};
   transition: 0.4s ease-in-out;
   &:hover {
@@ -136,7 +136,6 @@ const EmployeeLeave = () => {
 
   return (
     <>
-      <HeadingName>Employee's on Leave</HeadingName>
       <RecommendProject>
         {leaves
           ?.reverse()

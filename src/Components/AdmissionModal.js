@@ -14,6 +14,19 @@ const ModalBackground = styled.div`
   border-radius: 12px;
   margin-top: -5rem;
   margin-left: 7rem;
+  @media screen and (min-width: 320px) and (max-width: 1080px) {
+    width: 49vh;
+    height: 40vh;
+    background-color: rgba(200, 200, 200);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    border-radius: 12px;
+    margin-top: -45rem;
+    margin-left: 2.4rem;
+  }
 `;
 const ModalContainer = styled.div`
   width: 500px;
