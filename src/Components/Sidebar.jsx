@@ -121,6 +121,8 @@ const Sidebar = () => {
           setPic(userInfo.pic);
         }
       }, [history, userInfo]);
+
+       const [openModal, setOpenModal] = useState(false);
   return (
     <Container>
       <ProfileContainer>
@@ -148,7 +150,7 @@ const Sidebar = () => {
               <h3>Apply For Leave</h3>
             </Link>
           </LinkTag>
-          <LinkTag to="/payroll" style={{ textDecoration: "none" }}>
+          <LinkTag to="#" style={{ textDecoration: "none" }}>
             <Link>
               <RiSecurePaymentFill />
               <h3>Payroll</h3>

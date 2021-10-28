@@ -66,7 +66,9 @@ const Payroll = () => {
       </SalaryContainer>
       <SalaryBreakDown>
         <SalaryBreakDownTitle>Earnings</SalaryBreakDownTitle>
-        <SalaryInfo></SalaryInfo>
+        <SalaryInfo>
+          
+        </SalaryInfo>
       </SalaryBreakDown>
     </>
   );
