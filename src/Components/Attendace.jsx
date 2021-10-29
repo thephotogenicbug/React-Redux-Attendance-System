@@ -116,8 +116,9 @@ const Attendace = () => {
       createAttendaceAction(name, mobile, department, logintime, lunchstart, lunchend, logout)
     );
     if (!name || !mobile || !department) return setMessage("Please fill all the fields");
-
-  };
+    
+        history.push("/dashboard");
+  }; 
 
   const showdate = new Date();
   const displaytodaydate =

@@ -26,7 +26,7 @@ export const createLeaveAction =
       };
 
       const { data } = await axios.post(
-        `https://attendace-system-api.herokuapp.com/api/leave/create`,
+        `http://localhost:5000/api/leave/create`,
         { name, from, to, leaveoption, reason },
         config
       );
@@ -63,9 +63,7 @@ export const listLeaves = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(
-      `https://attendace-system-api.herokuapp.com/api/leave/get`
-    );
+    const { data } = await axios.get(`http://localhost:5000/api/leave/get`);
 
     dispatch({
       type: LEAVE_LIST_SUCCESS,
