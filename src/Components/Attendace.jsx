@@ -97,7 +97,6 @@ const StyledError = styled.div`
 const Attendace = () => {
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
-  const [unique, setUnique] = useState("");
   const [department, setDepartment] = useState("");
   const [lunchstart, setLunchStart] = useState("")
   const [lunchend, setLunchEnd] = useState("")
@@ -154,12 +153,6 @@ const Attendace = () => {
             value={mobile}
             onChange={(e) => setMobile(e.target.value)}
           />
-          {/* <StyledInput
-            type="text"
-            placeholder="Employee Id"
-            value={unique}
-            onChange={(e) => setUnique(e.target.value)}
-          /> */}
           <StyledInput
             type="text"
             placeholder="Department"
