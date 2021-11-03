@@ -6,6 +6,7 @@ import {
   admissionListReducer,
 } from "./reducers/admissionReducer";
 import {
+  attendaceAdminListReducer,
   attendaceCreateReducer,
   attendaceListReducer,
   attendaceUpdateReducer,
@@ -34,6 +35,7 @@ const reducer = combineReducers({
   walkinCreate: walkinCreateReducer,
   walkinList: walkinListReducer,
   leaveList: leaveListReducer,
+  attendaceAdminList: attendaceAdminListReducer
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

@@ -8,6 +8,9 @@ import {
   ATTENDACES_UPDATE_FAIL,
   ATTENDACES_UPDATE_REQUEST,
   ATTENDACES_UPDATE_SUCCESS,
+  ATTENDACE_ADMIN_LIST_FAIL,
+  ATTENDACE_ADMIN_LIST_REQUEST,
+  ATTENDACE_ADMIN_LIST_SUCCESS,
 } from "../constants/attendacesConstants";
 
 export const attendaceCreateReducer = (state = {}, action) => {
@@ -44,6 +47,22 @@ export const attendaceUpdateReducer = (state = {}, action) => {
     case ATTENDACES_UPDATE_SUCCESS:
       return { loading: false, success: true };
     case ATTENDACES_UPDATE_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const attendaceAdminListReducer = (
+  state = { attendace: [] },
+  action
+) => {
+  switch (action.type) {
+    case ATTENDACE_ADMIN_LIST_REQUEST:
+      return { loading: true };
+    case ATTENDACE_ADMIN_LIST_SUCCESS:
+      return { loading: false, attendace: action.payload };
+    case ATTENDACE_ADMIN_LIST_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;

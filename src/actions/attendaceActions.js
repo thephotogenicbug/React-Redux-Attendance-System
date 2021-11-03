@@ -9,6 +9,9 @@ import {
   ATTENDACES_UPDATE_FAIL,
   ATTENDACES_UPDATE_REQUEST,
   ATTENDACES_UPDATE_SUCCESS,
+  ATTENDACE_ADMIN_LIST_FAIL,
+  ATTENDACE_ADMIN_LIST_REQUEST,
+  ATTENDACE_ADMIN_LIST_SUCCESS,
 } from "../constants/attendacesConstants";
 
 export const createAttendaceAction =
@@ -209,3 +212,32 @@ export const updateAttendaceActionLogout =
       });
     }
   };
+
+export const listAdminAttendace = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: ATTENDACE_ADMIN_LIST_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+    const { data } = await axios.get(
+      `http://localhost:5000/api/attendace/admin`
+    );
+
+    dispatch({
+      type: ATTENDACE_ADMIN_LIST_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({
+      type: ATTENDACE_ADMIN_LIST_FAIL,
+      payload: message,
+    });
+  }
+};
