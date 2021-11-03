@@ -1,10 +1,6 @@
 import React, { useState } from "react";
-import { cardShadow, hoverEffect } from "../utils";
-import AvatarImg from "../assets/profile.png";
 import styled, { createGlobalStyle, css } from "styled-components";
-import Badge from "./Badge";
 import { useDispatch, useSelector } from "react-redux";
-import { createAttendaceAction } from "../actions/attendaceActions";
 import { useHistory } from "react-router";
 import { createLeaveAction } from "../actions/leaveActions";
 

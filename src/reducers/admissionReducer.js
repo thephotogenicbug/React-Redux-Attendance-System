@@ -6,11 +6,6 @@ import {
   ADMISSION_LIST_REQUEST,
   ADMISSION_LIST_SUCCESS,
 } from "../constants/AdmissionConstants";
-import {
-  ATTENDACES_CREATE_FAIL,
-  ATTENDACES_CREATE_REQUEST,
-  ATTENDACES_CREATE_SUCCESS,
-} from "../constants/attendacesConstants";
 
 export const admissionCreateReducer = (state = {}, action) => {
   switch (action.type) {

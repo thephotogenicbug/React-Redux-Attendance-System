@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { cardShadow, hoverEffect } from "../utils";
-import AvatarImg from "../assets/profile.png";
 import styled from "styled-components";
 import Badge from "./Badge";
 import { useDispatch } from "react-redux";

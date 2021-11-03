@@ -28,30 +28,6 @@ const Text = styled.h1`
 const InputContainer = styled.div`
   display: flex;
 `;
-const Icon = styled.div`
-  height: 3rem;
-  width: 3rem;
-  background-color: #fcc5b8;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-top-left-radius: 0.5rem;
-  border-bottom-left-radius: 0.5rem;
-
-  svg {
-    color: #555555;
-  }
-`;
-const Input = styled.input`
-  border: none;
-  background-color: #fcc5b8;
-  border-top-right-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
-  &:focus {
-    border: none;
-    outline: none;
-  }
-`;
 
 const PowerIcon = styled.div`
   height: 3rem;

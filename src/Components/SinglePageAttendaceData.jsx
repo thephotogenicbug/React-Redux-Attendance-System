@@ -52,13 +52,7 @@ const StyledInput = styled.input`
     width: 80%;
   }
 `;
-const StyledTextArea = styled.textarea`
-  background-color: #eee;
-  width: 90%;
-  min-height: 100px;
-  resize: none;
-  ${SharedStyles};
-`;
+
 
 const StyledButton = styled.button`
   display: block;
@@ -78,38 +72,7 @@ const StyledButton = styled.button`
   }
 `;
 
-const StyledFieldset = styled.fieldset`
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 20px 0;
 
-  legend {
-    padding: 0 10px;
-  }
-
-  label {
-    padding-right: 20px;
-  }
-
-  input {
-    margin-right: 10px;
-  }
-`;
-const StyledError = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fa4d41;
-`;
-
-const Avatar = styled.div`
-  img {
-    height: 7.9rem;
-    width: 7.9rem;
-    border-radius: 50%;
-  }
-`;
 
 const SinglePageAttendaceData = ({ match }) => {
   const [name, processName] = useState("");

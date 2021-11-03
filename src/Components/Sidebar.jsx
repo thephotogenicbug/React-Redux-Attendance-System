@@ -100,10 +100,6 @@ const Sidebar = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [pic, setPic] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState();
-  const [picMessage, setPicMessage] = useState("");
-  const [message, setMessage] = useState("");
 
     const dispatch = useDispatch();
 
@@ -141,7 +137,7 @@ const Sidebar = () => {
           <LinkTag to="/attendance" style={{ textDecoration: "none" }}>
             <Link>
               <AiOutlineLogin />
-              <h3>Attendace</h3>
+              <h3>Attendance</h3>
             </Link>
           </LinkTag>
           <LinkTag to="/applyforleave" style={{ textDecoration: "none" }}>

@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
+import { adminLoginReducer } from "./reducers/adminReducer";
 import {
   admissionCreateReducer,
   admissionListReducer,
@@ -35,7 +36,8 @@ const reducer = combineReducers({
   walkinCreate: walkinCreateReducer,
   walkinList: walkinListReducer,
   leaveList: leaveListReducer,
-  attendaceAdminList: attendaceAdminListReducer
+  attendaceAdminList: attendaceAdminListReducer,
+  adminLogin: adminLoginReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")
@@ -44,6 +46,7 @@ const userInfoFromStorage = localStorage.getItem("userInfo")
 
 const initalState = {
   userLogin: { userInfo: userInfoFromStorage },
+  adminLogin: { userInfo: userInfoFromStorage },
 };
 
 const middleware = [thunk];

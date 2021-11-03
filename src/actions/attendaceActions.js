@@ -15,7 +15,16 @@ import {
 } from "../constants/attendacesConstants";
 
 export const createAttendaceAction =
-  (name, mobile, department, logintime, lunchstart, lunchend, logout) =>
+  (
+    name,
+    mobile,
+    department,
+    logintime,
+    lunchstart,
+    lunchend,
+    logout,
+    currentstatus
+  ) =>
   async (dispatch, getState) => {
     try {
       dispatch({
@@ -42,6 +51,7 @@ export const createAttendaceAction =
           lunchstart,
           lunchend,
           logout,
+          currentstatus,
         },
         config
       );
@@ -223,7 +233,7 @@ export const listAdminAttendace = () => async (dispatch, getState) => {
       userLogin: { userInfo },
     } = getState();
     const { data } = await axios.get(
-      `http://localhost:5000/api/attendace/admin`
+      `https://attendace-system-api.herokuapp.com/api/attendace/admin`
     );
 
     dispatch({

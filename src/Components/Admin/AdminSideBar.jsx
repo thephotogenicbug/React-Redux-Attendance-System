@@ -114,7 +114,6 @@ const AdminSideBar = () => {
 
   useEffect(() => {
     if (!userInfo) {
-      history.push("/");
     } else {
       setName(userInfo.name);
       setEmail(userInfo.email);
@@ -135,7 +134,7 @@ const AdminSideBar = () => {
           <LinkTag to="/dashboard" style={{ textDecoration: "none" }}>
             <Link>
               <AiFillDashboard />
-              <h3>View Attendace</h3>
+              <h3>View Attendance</h3>
             </Link>
           </LinkTag>
           <LinkTag to="/attendance" style={{ textDecoration: "none" }}>

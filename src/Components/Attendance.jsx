@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import { cardShadow, hoverEffect } from "../utils";
-import AvatarImg from "../assets/profile.png";
 import styled, { createGlobalStyle, css } from "styled-components";
-import Badge from "./Badge";
 import { useDispatch, useSelector } from "react-redux";
 import { createAttendaceAction } from "../actions/attendaceActions";
 import { useHistory } from "react-router";
@@ -94,13 +91,14 @@ const StyledError = styled.div`
   color: #fa4d41;
 `;
 
-const Attendace = () => {
+const Attendance = () => {
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
   const [department, setDepartment] = useState("");
-  const [lunchstart, setLunchStart] = useState("")
-  const [lunchend, setLunchEnd] = useState("")
+  const [lunchstart, setLunchStart] = useState("");
+  const [lunchend, setLunchEnd] = useState("");
   const [logout, setLogout] = useState("");
+  const [currentstatus, setCurrentStatus] = useState("present");
   const [message, setMessage] = useState("");
 
   const dispatch = useDispatch();
@@ -112,12 +110,22 @@ const Attendace = () => {
   const SubmitHandler = (e) => {
     e.preventDefault();
     dispatch(
-      createAttendaceAction(name, mobile, department, logintime, lunchstart, lunchend, logout)
+      createAttendaceAction(
+        name,
+        mobile,
+        department,
+        logintime,
+        lunchstart,
+        lunchend,
+        logout,
+        currentstatus
+      )
     );
-    if (!name || !mobile || !department) return setMessage("Please fill all the fields");
-    
-        history.push("/dashboard");
-  }; 
+    if (!name || !mobile || !department)
+      return setMessage("Please fill all the fields");
+
+    history.push("/dashboard");
+  };
 
   const showdate = new Date();
   const displaytodaydate =
@@ -230,4 +238,4 @@ const StyledSpinner = styled.svg`
   }
 `;
 
-export default Attendace;
+export default Attendance;

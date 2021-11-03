@@ -1,4 +1,3 @@
-import faker from "faker";
 import React, { useEffect, useState } from "react";
 import {
   Table,
@@ -14,24 +13,15 @@ import {
   TablePagination,
   TableFooter,
 } from "@material-ui/core";
+import Box from "@mui/material/Box";
+import Fab from "@mui/material/Fab";
+import EditIcon from '@mui/icons-material/Edit'
 import { makeStyles } from "@material-ui/core/styles";
 import { RiWindowsFill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { listAdminAttendace } from "../../actions/attendaceActions";
-
-let USERS = [],
-  STATUSES = ["Active", "Pending", "Blocked"];
-for (let i = 0; i < 14; i++) {
-  USERS[i] = {
-    name: faker.name.findName(),
-    email: faker.internet.email(),
-    phone: faker.phone.phoneNumber(),
-    jobTitle: faker.name.jobTitle(),
-    company: faker.company.companyName(),
-    joinDate: faker.date.past().toLocaleString("en-US"),
-    status: STATUSES[Math.floor(Math.random() * STATUSES.length)],
-  };
-}
+import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -45,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
   tableHeaderCell: {
     fontWeight: "bold",
-    backgroundColor: theme.palette.primary.dark,
+    backgroundColor: "#fc3d42",
     color: theme.palette.getContrastText(theme.palette.primary.dark),
   },
   avatar: {
@@ -88,81 +78,113 @@ function MTable() {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const attendaceAdminList = useSelector((state) => state.attendaceAdminList);
-  const { loading, attendace, error } = attendaceAdminList;
+  const [attendacelist, updateAttendaceList] = useState([]);
 
-  console.log(attendace)
+  const Fetch = () => {
+    const url = "http://localhost:5000/api/attendace/admin";
+    fetch(url)
+      .then((response) => response.json())
+      .then((result) => updateAttendaceList(result));
+  };
 
-  useEffect(() =>{
-    dispatch(listAdminAttendace())
-  },[dispatch, userInfo])
+  useEffect(() => {
+    Fetch();
+  }, []);
 
   return (
     <TableContainer component={Paper} className={classes.tableContainer}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell className={classes.tableHeaderCell}>User Info</TableCell>
-            <TableCell className={classes.tableHeaderCell}>Job Info</TableCell>
             <TableCell className={classes.tableHeaderCell}>
-              Joining Date
+              Employee Name
             </TableCell>
+            <TableCell className={classes.tableHeaderCell}>
+              Login Time
+            </TableCell>
+            <TableCell className={classes.tableHeaderCell}>
+              Lunch Start
+            </TableCell>
+            <TableCell className={classes.tableHeaderCell}>Lunch End</TableCell>
+            <TableCell className={classes.tableHeaderCell}>Logout</TableCell>
             <TableCell className={classes.tableHeaderCell}>Status</TableCell>
+            <TableCell className={classes.tableHeaderCell}>Edit</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {USERS.slice(
-            page * rowsPerPage,
-            page * rowsPerPage + rowsPerPage
-          ).map((row) => (
-            <TableRow key={row.name}>
-              <TableCell>
-                <Grid container>
-                  <Grid item lg={2}>
-                    <Avatar alt={row.name} src="." className={classes.avatar} />
-                  </Grid>
-                  <Grid item lg={10}>
-                    <Typography className={classes.name}>{row.name}</Typography>
-                    <Typography color="textSecondary" variant="body2">
-                      {row.email}
+          {attendacelist
+            .reverse()
+            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            .map((xattendace, index) => {
+              return (
+                <TableRow key={index}>
+                  <TableCell>
+                    <Grid container>
+                      <Grid item lg={15}>
+                        <Typography className={classes.name}>
+                          {xattendace.name}
+                        </Typography>
+                        <Typography color="textSecondary" variant="body2">
+                          {xattendace.department}
+                        </Typography>
+                        <Typography color="textSecondary" variant="body2">
+                          {xattendace?.createdAt.substring(0, 10)}
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                  </TableCell>
+                  <TableCell>
+                    <Typography color="primary" variant="subtitle2">
+                      {xattendace.logintime}
                     </Typography>
-                    <Typography color="textSecondary" variant="body2">
-                      {row.phone}
+                  </TableCell>
+                  <TableCell>
+                    <Typography color="primary" variant="subtitle2">
+                      {xattendace?.lunchstart}
                     </Typography>
-                  </Grid>
-                </Grid>
-              </TableCell>
-              <TableCell>
-                <Typography color="primary" variant="subtitle2">
-                  {row.jobTitle}
-                </Typography>
-                <Typography color="textSecondary" variant="body2">
-                  {row.company}
-                </Typography>
-              </TableCell>
-              <TableCell>{row.joinDate}</TableCell>
-              <TableCell>
-                <Typography
-                  className={classes.status}
-                  style={{
-                    backgroundColor:
-                      (row.status === "Active" && "green") ||
-                      (row.status === "Pending" && "blue") ||
-                      (row.status === "Blocked" && "orange"),
-                  }}
-                >
-                  {row.status}
-                </Typography>
-              </TableCell>
-            </TableRow>
-          ))}
+                  </TableCell>
+                  <TableCell>
+                    <Typography color="primary" variant="subtitle2">
+                      {xattendace?.lunchend}
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography color="primary" variant="subtitle2">
+                      {xattendace?.logout}
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography
+                      className={classes.status}
+                      style={{
+                        backgroundColor:
+                          (xattendace.currentstatus === "present" && "green") ||
+                          (xattendace.currentstatus === "leave" && "orange") ||
+                          (xattendace.currentstatus === "Blocked" && "orange"),
+                      }}
+                    >
+                      {xattendace?.currentstatus}
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography>
+                      <Box sx={{ "& > :not(style)": { m: 1 } }}>
+                        <Fab size="small" color="secondary" aria-label="add">
+                        <EditIcon />
+                        </Fab>
+                      </Box>
+                    </Typography>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
         </TableBody>
       </Table>
       <TableFooter>
         <TablePagination
-          rowsPerPageOptions={[4, 10, 15]}
+          rowsPerPageOptions={[2, 4]}
           component="div"
-          count={USERS.length}
+          count={attendacelist.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onChangePage={handleChangePage}
