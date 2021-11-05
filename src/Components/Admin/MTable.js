@@ -15,13 +15,14 @@ import {
 } from "@material-ui/core";
 import Box from "@mui/material/Box";
 import Fab from "@mui/material/Fab";
-import EditIcon from '@mui/icons-material/Edit'
+import EditIcon from "@mui/icons-material/Edit";
 import { makeStyles } from "@material-ui/core/styles";
 import { RiWindowsFill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { listAdminAttendace } from "../../actions/attendaceActions";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -89,7 +90,7 @@ function MTable() {
 
   useEffect(() => {
     Fetch();
-  }, []);
+  }, [Link]);
 
   return (
     <TableContainer component={Paper} className={classes.tableContainer}>
@@ -158,9 +159,9 @@ function MTable() {
                       className={classes.status}
                       style={{
                         backgroundColor:
-                          (xattendace.currentstatus === "present" && "green") ||
-                          (xattendace.currentstatus === "leave" && "orange") ||
-                          (xattendace.currentstatus === "Blocked" && "orange"),
+                          (xattendace.currentstatus === "Present" && "green") ||
+                          (xattendace.currentstatus === "Leave" && "orange") ||
+                          (xattendace.currentstatus === "CL" && "orange"),
                       }}
                     >
                       {xattendace?.currentstatus}
@@ -169,9 +170,9 @@ function MTable() {
                   <TableCell>
                     <Typography>
                       <Box sx={{ "& > :not(style)": { m: 1 } }}>
-                        <Fab size="small" color="secondary" aria-label="add">
-                        <EditIcon />
-                        </Fab>
+                        <Link to={`/admin/data/${xattendace._id}`}>
+                          <EditIcon />
+                        </Link>
                       </Box>
                     </Typography>
                   </TableCell>

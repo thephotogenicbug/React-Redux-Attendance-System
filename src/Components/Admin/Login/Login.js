@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import styled from "styled-components";
-import { login } from "../../actions/adminActions";
+import { login } from "../../../actions/adminActions";
 import Input from "./Input";
 
 const Wrapper = styled.div`
@@ -56,16 +56,16 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const adminLogin = useSelector((state) => state.adminLogin);
-  const { loading, error, userInfo } = adminLogin;
+  const { loading, error, adminInfo } = adminLogin;
 
   const history = useHistory();
 
 
   useEffect(() =>{
-    if(userInfo){
+    if(adminInfo){
       history.push('/admin/data')
     }
-  },[history, userInfo])
+  },[history, adminInfo])
 
   const SubmitHandler = async (e) => {
     e.preventDefault();

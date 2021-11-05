@@ -123,9 +123,6 @@ const MainContent = () => {
             <Info />
             <Walkins />
           </ColumnOne1>
-          {/* <ColumnTwo1>
-            <Projects />
-          </ColumnTwo1> */}
         </SectionOne>
         <SectionTwo>
           <ColumnOne2>

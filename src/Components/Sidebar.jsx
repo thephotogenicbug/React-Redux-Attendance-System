@@ -110,7 +110,7 @@ const Sidebar = () => {
 
       useEffect(() => {
         if (!userInfo) {
-          history.push("/");
+         
         } else {
           setName(userInfo.name);
           setEmail(userInfo.email);

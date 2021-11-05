@@ -94,8 +94,8 @@ const ContactContainer = styled.div`
 `;
 
 const AdminSideBar = () => {
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const adminLogin = useSelector((state) => state.userLogin);
+  const { adminInfo } = adminLogin;
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -107,37 +107,34 @@ const AdminSideBar = () => {
 
   const dispatch = useDispatch();
 
-  const userUpdate = useSelector((state) => state.userUpdate);
-  const { loading, error, success } = userUpdate;
-
   const history = useHistory();
 
   useEffect(() => {
-    if (!userInfo) {
+    if (!adminInfo) {
     } else {
-      setName(userInfo.name);
-      setEmail(userInfo.email);
-      setPic(userInfo.pic);
+      setName(adminInfo.name);
+      setEmail(adminInfo.email);
+      setPic(adminInfo.pic);
     }
-  }, [history, userInfo]);
+  }, [history, adminInfo]);
 
   const [openModal, setOpenModal] = useState(false);
   return (
     <Container>
       <ProfileContainer>
         <Avatar src={pic} />
-        <Name>{`${userInfo?.name}`}</Name>
+        <Name>{`${adminInfo?.name}`}</Name>
         {/* <Badge content="Level" /> */}
       </ProfileContainer>
       <LinksContainer>
         <Links>
-          <LinkTag to="/dashboard" style={{ textDecoration: "none" }}>
+          <LinkTag to="/viewattendace" style={{ textDecoration: "none" }}>
             <Link>
               <AiFillDashboard />
               <h3>View Attendance</h3>
             </Link>
           </LinkTag>
-          <LinkTag to="/attendance" style={{ textDecoration: "none" }}>
+          <LinkTag to="" style={{ textDecoration: "none" }}>
             <Link>
               <AiOutlineLogin />
               <h3>View Leave</h3>

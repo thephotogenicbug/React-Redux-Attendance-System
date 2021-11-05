@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import AdminAttendace from './AdminAttendace';
+import AdminNavbar from './AdminNavbar';
 
 const Container = styled.div`
   width: 60%;
@@ -21,6 +22,7 @@ const SubContainer = styled.div`
 const AdminContent = () => {
   return (
     <Container>
+      <AdminNavbar />
         <SubContainer>
            <AdminAttendace />
         </SubContainer>
