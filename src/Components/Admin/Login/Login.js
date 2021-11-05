@@ -63,7 +63,7 @@ const Login = () => {
 
   useEffect(() =>{
     if(adminInfo){
-      history.push('/admin/data')
+      history.push("/adminlogin/data");
     }
   },[history, adminInfo])
 

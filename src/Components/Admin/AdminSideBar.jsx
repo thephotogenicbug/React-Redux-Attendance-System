@@ -94,7 +94,7 @@ const ContactContainer = styled.div`
 `;
 
 const AdminSideBar = () => {
-  const adminLogin = useSelector((state) => state.userLogin);
+  const adminLogin = useSelector((state) => state.adminLogin);
   const { adminInfo } = adminLogin;
 
   const [name, setName] = useState("");
@@ -111,6 +111,7 @@ const AdminSideBar = () => {
 
   useEffect(() => {
     if (!adminInfo) {
+      history.push("/adminlogin");
     } else {
       setName(adminInfo.name);
       setEmail(adminInfo.email);

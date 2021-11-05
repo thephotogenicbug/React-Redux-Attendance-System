@@ -170,7 +170,7 @@ function MTable() {
                   <TableCell>
                     <Typography>
                       <Box sx={{ "& > :not(style)": { m: 1 } }}>
-                        <Link to={`/admin/data/${xattendace._id}`}>
+                        <Link to={`/adminlogin/data/${xattendace._id}`}>
                           <EditIcon />
                         </Link>
                       </Box>

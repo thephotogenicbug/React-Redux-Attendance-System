@@ -20,8 +20,8 @@ function App() {
     <BrowserRouter>
       <Route exact path="/adminlogin" component={Login} />
       <Route exact path="/adminregister" component={Register} />
-      <Route exact path="/admin/data" component={AdminContainer} />
-      <Route exact path="/admin/data/:id" component={SinglePageAttendaceAdmin} />
+      <Route exact path="/adminlogin/data" component={AdminContainer} />
+      <Route exact path="/adminlogin/data/:id" component={SinglePageAttendaceAdmin} />
       <Route exac path="/viewattendace" component={AdminContainer} />
       <Route exact path="/" component={Signin} />
       <Route exact path="/register" component={Signup} />

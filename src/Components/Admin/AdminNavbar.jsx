@@ -57,7 +57,7 @@ const AdminNavbar = () => {
 
   const logoutHandler = () => {
     dispatch(logout());
-    history.push("/admin");
+    history.push("/adminlogin");
   };
 
   return (
