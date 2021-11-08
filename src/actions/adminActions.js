@@ -13,10 +13,13 @@ export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: ADMIN_LOGIN_REQUEST });
 
-    const { data } = await axios.post("http://localhost:5000/api/admin/login", {
-      email,
-      password,
-    });
+    const { data } = await axios.post(
+      "https://attendace-system-api.herokuapp.com/api/admin/login",
+      {
+        email,
+        password,
+      }
+    );
 
     dispatch({ type: ADMIN_LOGIN_SUCCESS, payload: data });
     localStorage.setItem("adminInfo", JSON.stringify(data));
@@ -35,12 +38,15 @@ export const register = (name, email, password, pic) => async (dispatch) => {
   try {
     dispatch({ type: ADMIN_REGISTER_REQUEST });
 
-    const { data } = await axios.post("http://localhost:5000/api/admin", {
-      name,
-      pic,
-      password,
-      email,
-    });
+    const { data } = await axios.post(
+      "https://attendace-system-api.herokuapp.com/api/admin",
+      {
+        name,
+        pic,
+        password,
+        email,
+      }
+    );
 
     dispatch({ type: ADMIN_REGISTER_SUCCESS, payload: data });
     dispatch({ type: ADMIN_LOGIN_SUCCESS, payload: data });

@@ -42,7 +42,7 @@ export const createAttendaceAction =
       };
 
       const { data } = await axios.post(
-        `http://localhost:5000/api/attendace/create`,
+        `https://attendace-system-api.herokuapp.com/api/attendace/create`,
         {
           name,
           mobile,
@@ -89,7 +89,7 @@ export const listAttendaces = () => async (dispatch, getState) => {
       },
     };
     const { data } = await axios.get(
-      `http://localhost:5000/api/attendace/get`,
+      `https://attendace-system-api.herokuapp.com/api/attendace/get`,
       config
     );
 
@@ -127,7 +127,7 @@ export const updateAttendaceAction =
       };
 
       const { data } = await axios.put(
-        `http://localhost:5000/api/attendace/get/${id}`,
+        `https://attendace-system-api.herokuapp.com/api/attendace/get/${id}`,
         { lunchstart },
         config
       );
@@ -165,7 +165,7 @@ export const updateAttendaceActionLunchend =
       };
 
       const { data } = await axios.put(
-        `http://localhost:5000/api/attendace/get/lunchend/${id}`,
+        `https://attendace-system-api.herokuapp.com/api/attendace/get/lunchend/${id}`,
         { lunchend },
         config
       );
@@ -203,7 +203,7 @@ export const updateAttendaceActionLogout =
       };
 
       const { data } = await axios.put(
-        `http://localhost:5000/api/attendace/get/logout/${id}`,
+        `https://attendace-system-api.herokuapp.com/api/attendace/get/logout/${id}`,
         { logout },
         config
       );

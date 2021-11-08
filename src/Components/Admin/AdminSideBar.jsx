@@ -135,7 +135,7 @@ const AdminSideBar = () => {
               <h3>View Attendance</h3>
             </Link>
           </LinkTag>
-          <LinkTag to="" style={{ textDecoration: "none" }}>
+          <LinkTag to="/viewleave" style={{ textDecoration: "none" }}>
             <Link>
               <AiOutlineLogin />
               <h3>View Leave</h3>

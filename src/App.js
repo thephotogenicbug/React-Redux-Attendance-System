@@ -12,8 +12,10 @@ import MainContainerPayroll from "./Components/MainContainerPayroll";
 import Login from "./Components/Admin/Login/Login";
 import AdminContainer from "./Components/Admin/AdminContainer";
 import SinglePageAttendaceAdmin from "./Components/Admin/SinglePageAttendaceAdmin";
+import SinglePageLeaveAdmin from './Components/Admin/SinglePageLeaveAdmin';
 import MTable from "./Components/Admin/MTable";
 import Register from "./Components/Admin/Register/Register";
+import AdminLeaveContainer from './Components/Admin/AdminLeaveContainer';
 
 function App() {
   return (
@@ -22,7 +24,9 @@ function App() {
       <Route exact path="/adminregister" component={Register} />
       <Route exact path="/adminlogin/data" component={AdminContainer} />
       <Route exact path="/adminlogin/data/:id" component={SinglePageAttendaceAdmin} />
-      <Route exac path="/viewattendace" component={AdminContainer} />
+      <Route exact path="/viewattendace" component={AdminContainer} />
+      <Route exact path="/viewleave" component ={AdminLeaveContainer} />
+      <Route exact path="/viewleave/:id" component={SinglePageLeaveAdmin} />
       <Route exact path="/" component={Signin} />
       <Route exact path="/register" component={Signup} />
       <Route exact path="/dashboard" component={MainContainer} />

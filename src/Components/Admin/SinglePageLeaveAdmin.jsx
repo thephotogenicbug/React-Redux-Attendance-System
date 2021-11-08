@@ -83,35 +83,28 @@ const SelectDownDownOptions = styled.option`
 `;
 
 const Message = styled.h5`
-text-align: center;
-  
-`
+  text-align: center;
+`;
 
-const SinglePageAttendaceAdmin = ({ match }) => {
+const SinglePageLeaveAdmin = ({ match }) => {
   const [name, processName] = useState("");
-  const [mobile, processMobile] = useState("");
-  const [unique, processUnique] = useState("");
-  const [department, processDepartment] = useState("");
-  const [logintime, processLoginTime] = useState("");
-  const [lunchstart, processLunchStart] = useState("");
-  const [lunchend, processLunchEnd] = useState("");
-  const [logout, processLogOut] = useState("");
-  const [currentstatus, processCurrentStatus] = useState("");
+  const [to, processTo] = useState("");
+  const [from, processFrom] = useState("")
+  const [leaveoption, processLeaveOption] = useState("")
+  const [reason, processReason] = useState("")
+  const [currentstatus, processCurrentStatus] = useState("")
 
   useEffect(() => {
     const fetching = async () => {
       const { data } = await axios.get(
-        `https://attendace-system-api.herokuapp.com/api/attendace/admin/${match.params.id}`
+        `https://attendace-system-api.herokuapp.com/api/leave/get/${match.params.id}`
       );
       processName(data?.name);
-      processMobile(data?.mobile);
-      processUnique(data?.unique);
-      processDepartment(data?.department);
-      processLoginTime(data?.logintime);
-      processLunchStart(data?.lunchstart);
-      processLunchEnd(data?.lunchend);
-      processLogOut(data?.logout);
-      processCurrentStatus(data?.currentstatus);
+      processTo(data?.to);
+      processFrom(data?.from);
+      processLeaveOption(data?.leaveoption);
+      processReason(data?.reason)
+      processCurrentStatus(data?.currentstatus)
 
       console.log(data);
     };
@@ -122,8 +115,8 @@ const SinglePageAttendaceAdmin = ({ match }) => {
   const [message, updateMessage] = useState("");
 
   const updateInfo = (e) => {
-      e.preventDefault()
-    const url = `https://attendace-system-api.herokuapp.com/api/attendace/${match.params.id}`;
+    e.preventDefault();
+    const url = `https://attendace-system-api.herokuapp.com/api/leave/${match.params.id}`;
     const jsonData = {
       currentstatus,
     };
@@ -146,44 +139,26 @@ const SinglePageAttendaceAdmin = ({ match }) => {
           />
           <StyledInput
             type="text"
-            placeholder="Mobile No"
-            value={mobile}
+            placeholder="From"
+            value={from}
             disabled={true}
           />
           <StyledInput
             type="text"
-            placeholder="Unique Id"
-            value={unique}
+            placeholder="To"
+            value={to}
             disabled={true}
           />
           <StyledInput
             type="text"
-            placeholder="Department"
-            value={department}
+            placeholder="Leave Options"
+            value={leaveoption}
             disabled={true}
           />
           <StyledInput
             type="text"
-            placeholder="Login Time"
-            value={logintime}
-            disabled={true}
-          />
-          <StyledInput
-            type="text"
-            placeholder="Lunch Start"
-            value={lunchstart}
-            disabled={true}
-          />
-          <StyledInput
-            type="text"
-            placeholder="Lunch End"
-            value={lunchend}
-            disabled={true}
-          />
-          <StyledInput
-            type="text"
-            placeholder="Logout"
-            value={logout}
+            placeholder="Reason"
+            value={reason}
             disabled={true}
           />
           <StyledInput
@@ -197,4 +172,4 @@ const SinglePageAttendaceAdmin = ({ match }) => {
   );
 };
 
-export default SinglePageAttendaceAdmin;
+export default SinglePageLeaveAdmin;

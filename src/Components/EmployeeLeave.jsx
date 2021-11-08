@@ -5,8 +5,43 @@ import Badge from "./Badge";
 import Pagination from "./Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { listLeaves } from "../actions/leaveActions";
-import axios from "axios";
 import { useHistory } from "react-router";
+import {Typography,} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  table: {
+    minWidth: 650,
+  },
+  tableContainer: {
+    borderRadius: 15,
+    margin: "10px 10px",
+    maxWidth: 950,
+    marginLeft: "5rem",
+  },
+  tableHeaderCell: {
+    fontWeight: "bold",
+    backgroundColor: "#fc3d42",
+    color: theme.palette.getContrastText(theme.palette.primary.dark),
+  },
+  avatar: {
+    backgroundColor: theme.palette.primary.light,
+    color: theme.palette.getContrastText(theme.palette.primary.light),
+  },
+  name: {
+    fontWeight: "bold",
+    color: theme.palette.secondary.dark,
+  },
+  status: {
+    fontWeight: "bold",
+    fontSize: "0.75rem",
+    color: "white",
+    backgroundColor: "red",
+    borderRadius: 8,
+    padding: "3px 10px",
+    display: "inline-block",
+  },
+}));
 
 const RecommendProject = styled.div`
   border-radius: 1rem;
@@ -105,6 +140,7 @@ const NoDataFoundMessage = styled.h4`
   }
 `;
 const EmployeeLeave = () => {
+  const classes = useStyles();
   const [showPerPage, setShowPerPage] = useState(1);
   const [pagination, setPagination] = useState({
     start: 0,
@@ -137,9 +173,7 @@ const EmployeeLeave = () => {
   return (
     <>
       <RecommendProject>
-        {leaves
-          ?.reverse()
-          .slice(pagination.start, pagination.end)
+        {leaves?.slice(pagination.start, pagination.end)
           .map((xleave, index) => {
             return (
               <CardContent key={index}>
@@ -156,6 +190,17 @@ const EmployeeLeave = () => {
                 </Detail>
                 <Title>Reason</Title>
                 <ReasonInfo>{xleave.reason}</ReasonInfo>
+                <Typography
+                  className={classes.status}
+                  style={{
+                    backgroundColor:
+                      (xleave.currentstatus === "Confirmed" && "green") ||
+                      (xleave.currentstatus === "Pending" && "orange") ||
+                      (xleave.currentstatus === "Denied" && "red"),
+                  }}
+                >
+                  {xleave?.currentstatus}
+                </Typography>
                 <PriceContainer>
                   <Price>{xleave.from}</Price>
                   <Price>To</Price>
@@ -164,16 +209,10 @@ const EmployeeLeave = () => {
               </CardContent>
             );
           })}
-        {(leavelist?.length >= 1 && (
-          <Pagination
-            showPerPage={showPerPage}
-            onPaginationChange={onPaginationChange}
-          />
-        )) || (
-          <NoDataFoundMessage>
-            No Employee's on LeaveData Found
-          </NoDataFoundMessage>
-        )}
+        <Pagination
+          showPerPage={showPerPage}
+          onPaginationChange={onPaginationChange}
+        />
       </RecommendProject>
     </>
   );

@@ -87,7 +87,7 @@ const SinglePageAttendaceData = ({ match }) => {
   useEffect(() => {
     const fetching = async () => {
       const { data } = await axios.get(
-        `http://localhost:5000/api/attendace/get/${match.params.id}`
+        `https://attendace-system-api.herokuapp.com/api/attendace/get/${match.params.id}`
       );
       processName(data?.name);
       processMobile(data?.mobile);

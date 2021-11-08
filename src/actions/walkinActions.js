@@ -27,7 +27,7 @@ export const createWalkinAction =
         },
       };
       const { data } = await axios.post(
-        `http://localhost:5000/api/walkin/create`,
+        `https://attendace-system-api.herokuapp.com/api/walkin/create`,
         { studentname, telecounselorname, universityname, coursename },
         config
       );
@@ -62,7 +62,7 @@ export const createWalkinAction =
              },
            };
            const { data } = await axios.get(
-             `http://localhost:5000/api/walkin/get`,
+             `https://attendace-system-api.herokuapp.com/api/walkin/get`,
              config
            );
            dispatch({

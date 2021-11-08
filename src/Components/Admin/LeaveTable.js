@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function MTable() {
+function LeaveTable () {
   const classes = useStyles();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(4);
@@ -82,8 +82,7 @@ function MTable() {
   const [attendacelist, updateAttendaceList] = useState([]);
 
   const Fetch = () => {
-    const url =
-      "https://attendace-system-api.herokuapp.com/api/attendace/admin";
+    const url = "https://attendace-system-api.herokuapp.com/api/leave/get";
     fetch(url)
       .then((response) => response.json())
       .then((result) => updateAttendaceList(result));
@@ -102,13 +101,12 @@ function MTable() {
               Employee Name
             </TableCell>
             <TableCell className={classes.tableHeaderCell}>
-              Login Time
+              From
             </TableCell>
             <TableCell className={classes.tableHeaderCell}>
-              Lunch Start
+              To
             </TableCell>
-            <TableCell className={classes.tableHeaderCell}>Lunch End</TableCell>
-            <TableCell className={classes.tableHeaderCell}>Logout</TableCell>
+            <TableCell className={classes.tableHeaderCell}>Reason</TableCell>
             <TableCell className={classes.tableHeaderCell}>Status</TableCell>
             <TableCell className={classes.tableHeaderCell}>Edit</TableCell>
           </TableRow>
@@ -137,41 +135,28 @@ function MTable() {
                   </TableCell>
                   <TableCell>
                     <Typography color="primary" variant="subtitle2">
-                      {xattendace.logintime}
+                      {xattendace.from}
                     </Typography>
                   </TableCell>
                   <TableCell>
                     <Typography color="primary" variant="subtitle2">
-                      {xattendace?.lunchstart}
+                      {xattendace?.to}
                     </Typography>
                   </TableCell>
                   <TableCell>
                     <Typography color="primary" variant="subtitle2">
-                      {xattendace?.lunchend}
+                      {xattendace?.reason}
                     </Typography>
                   </TableCell>
                   <TableCell>
                     <Typography color="primary" variant="subtitle2">
-                      {xattendace?.logout}
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography
-                      className={classes.status}
-                      style={{
-                        backgroundColor:
-                          (xattendace.currentstatus === "Present" && "green") ||
-                          (xattendace.currentstatus === "Leave" && "orange") ||
-                          (xattendace.currentstatus === "CL" && "orange"),
-                      }}
-                    >
                       {xattendace?.currentstatus}
                     </Typography>
                   </TableCell>
                   <TableCell>
                     <Typography>
                       <Box sx={{ "& > :not(style)": { m: 1 } }}>
-                        <Link to={`/adminlogin/data/${xattendace._id}`}>
+                        <Link to={`/viewleave/${xattendace._id}`}>
                           <EditIcon />
                         </Link>
                       </Box>
@@ -196,4 +181,4 @@ function MTable() {
     </TableContainer>
   );
 }
-export default MTable;
+export default LeaveTable;

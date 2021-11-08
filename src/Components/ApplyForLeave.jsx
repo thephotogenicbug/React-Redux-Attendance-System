@@ -98,6 +98,7 @@ const ApplyForLeave = () => {
   const [to, setTo] = useState("");
   const [leaveoption, setLeaveOption] = useState("");
   const [reason, setReason] = useState("");
+  const [currentstatus, setCurrentStatus] = useState("Pending");
   const [message, setMessage] = useState("");
 
   const dispatch = useDispatch();
@@ -108,7 +109,9 @@ const ApplyForLeave = () => {
 
   const SubmitHandler = (e) => {
     e.preventDefault();
-    dispatch(createLeaveAction(name, from, to, leaveoption, reason));
+    dispatch(
+      createLeaveAction(name, from, to, leaveoption, reason, currentstatus)
+    );
     if (!name || !from || !to || !leaveoption || !reason)
       return setMessage("Please fill all the fields");
 

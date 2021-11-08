@@ -9,7 +9,8 @@ import {
 } from "../constants/leaveConstants";
 
 export const createLeaveAction =
-  (name, from, to, leaveoption, reason) => async (dispatch, getState) => {
+  (name, from, to, leaveoption, reason, currentstatus) =>
+  async (dispatch, getState) => {
     try {
       dispatch({
         type: LEAVE_CREATE_REQUEST,
@@ -26,8 +27,8 @@ export const createLeaveAction =
       };
 
       const { data } = await axios.post(
-        `http://localhost:5000/api/leave/create`,
-        { name, from, to, leaveoption, reason },
+        `https://attendace-system-api.herokuapp.com/api/leave/create`,
+        { name, from, to, leaveoption, reason, currentstatus },
         config
       );
       dispatch({
@@ -63,7 +64,9 @@ export const listLeaves = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`http://localhost:5000/api/leave/get`);
+    const { data } = await axios.get(
+      `https://attendace-system-api.herokuapp.com/api/leave/get`
+    );
 
     dispatch({
       type: LEAVE_LIST_SUCCESS,
