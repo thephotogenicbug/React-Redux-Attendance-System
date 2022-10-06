@@ -20,14 +20,11 @@ import AdminLeaveContainer from './Components/Admin/AdminLeaveContainer';
 function App() {
   return (
     <BrowserRouter>
-      <Route exact path="/adminlogin" component={Login} />
-      <Route exact path="/adminregister" component={Register} />
       <Route exact path="/adminlogin/data" component={AdminContainer} />
       <Route exact path="/adminlogin/data/:id" component={SinglePageAttendaceAdmin} />
       <Route exact path="/viewattendace" component={AdminContainer} />
       <Route exact path="/viewleave" component ={AdminLeaveContainer} />
       <Route exact path="/viewleave/:id" component={SinglePageLeaveAdmin} />
-      <Route exact path="/" component={Signin} />
       <Route exact path="/register" component={Signup} />
       <Route exact path="/dashboard" component={MainContainer} />
       <Route exact path="/attendance" component={MainContainerTwo} />
